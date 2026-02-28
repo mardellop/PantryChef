@@ -439,7 +439,7 @@ nav ul li a:hover {
     padding: 80px 0;
 }
 .download {
-    background: radial-gradient(circle at 71% 25%, #4E342E 0%, #3E2723 100%);
+    background: var(--primary-orange);
     color: var(--white);
     border-radius: 40px;
     padding: 100px 80px;
