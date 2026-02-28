@@ -9,8 +9,8 @@
     --bg-neutral: #F5F5F0;
     --white: #FFFFFF;
     --border-light: #EFEBE9;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Manrope', sans-serif;
+    --font-heading: 'Playfair Display', poppins;
+    --font-body: 'Manrope', poppins;
     --container-max-width: 1200px;
     --header-height: 81px;
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
