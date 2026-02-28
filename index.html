@@ -14,7 +14,7 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
+        <div class="containerWide container">
             <a href="#" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
@@ -42,13 +42,18 @@
                     <p>Pantry Chef te ayuda a preparar comidas saludables con lo que ya tienes en casa. Sin
                         planificación, sin complicaciones.</p>
                     <div class="hero-btns">
-                        <a href="#descargar" class="btn btn-primary">Descargar gratis</a>
-                        <a href="#nosotros" class="btn btn-outline">Conocer más</a>
+                        <a href="#descargar" class="btn btn-primary btn-large">Descargar gratis</a>
+                        <a href="#nosotros" class="btn btn-outline btn-large">Conocer mas</a>
                     </div>
                 </div>
                 <div class="hero-image">
                     <img src="hero-graphic.png" alt="Pantry Chef Illustration">
                 </div>
+            </div>
+            <div class="scroll-indicator"
+                onclick="document.querySelector('#nosotros').scrollIntoView({behavior: 'smooth'})">
+                <span>Descubre mas</span>
+                <i data-lucide="chevron-down"></i>
             </div>
         </section>
         <!-- About Section -->
@@ -57,9 +62,7 @@
                 <div class="about-image">
                     <img src="about.png" alt="People cooking together">
                     <div class="stat-pill">
-                        <div class="stat-icon">
-                            <i data-lucide="users"></i>
-                        </div>
+                        <i data-lucide="users"></i>
                         <div class="stat-text">
                             <span id="counter">+10,000</span>
                             <p>Usuarios activos</p>
@@ -83,6 +86,10 @@
         <!-- Values Section -->
         <section id="valores" class="values">
             <div class="container">
+                <div class="section-header">
+                    <h2>Nuestros valores</h2>
+                    <p>Los principios que guian cada decision y cada funcionalidad de Pantry Chef.</p>
+                </div>
                 <div class="values-grid">
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="zap"></i></div>
@@ -92,7 +99,7 @@
                     </div>
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="settings"></i></div>
-                        <h3>Personalización</h3>
+                        <h3>Personalizacion</h3>
                         <p>Cada persona y cada paladar es un mundo. Nos adaptamos a los gustos y hábitos de nuestros
                             clientes.</p>
                     </div>
@@ -103,7 +110,7 @@
                             todos.</p>
                     </div>
                     <div class="value-card">
-                        <div class="value-icon"><i data-lucide="users-2"></i></div>
+                        <div class="value-icon"><i data-lucide="users"></i></div>
                         <h3>Comunidad</h3>
                         <p>Fomentamos el intercambio de ideas porque cocinar también es compartir con otros.</p>
                     </div>
@@ -119,13 +126,21 @@
         <!-- Product Section -->
         <section id="producto" class="product">
             <div class="container">
+                <div class="section-header">
+                    <div class="feature-badge"
+                        style="background: #FFF5F2; color: #E65100; border-radius: 9999px; padding: 4px 16px; margin-bottom: 24px;">
+                        Nuestro producto</div>
+                    <h2>Todo lo que necesitas para cocinar</h2>
+                    <p>Tu pones los ingredientes, nosotros ponemos la idea. Todo en un solo lugar, fluido y sin
+                        fricciones.</p>
+                </div>
                 <!-- Feature 1 -->
                 <div class="product-feature">
                     <div class="feature-content">
-                        <div class="feature-badge">Función 1</div>
+                        <div class="feature-badge">FUNCION 1</div>
                         <h2>Recetas con IA</h2>
-                        <p>Dinos qué tienes en tu despensa y nuestra inteligencia artificial te propondrá recetas
-                            nutritivas y fáciles de preparar.</p>
+                        <p>Dinos que tienes en tu despensa y nuestra inteligencia artificial te propondra recetas
+                            nutritivas y faciles de preparar.</p>
                     </div>
                     <div class="feature-image">
                         <img src="feature-1.png" alt="Recetas con IA">
@@ -134,7 +149,7 @@
                 <!-- Feature 2 -->
                 <div class="product-feature reverse">
                     <div class="feature-content">
-                        <div class="feature-badge">Función 2</div>
+                        <div class="feature-badge">FUNCION 2</div>
                         <h2>Comunidad</h2>
                         <p>Únete a miles de cocineros caseros, comparte tus platos, descubre nuevos sabores y conecta
                             con personas de todo el mundo.</p>
@@ -146,34 +161,34 @@
                 <!-- Feature 3 -->
                 <div class="product-feature">
                     <div class="feature-content">
-                        <div class="feature-badge">Función 3</div>
+                        <div class="feature-badge">FUNCION 3</div>
                         <h2>Listas de compra inteligentes</h2>
-                        <p>Crea listas automáticas con lo que te falta, conecta con tiendas locales y obtén descuentos
+                        <p>Crea listas automaticas con lo que te falta, conecta con tiendas locales y obtene descuentos
                             exclusivos.</p>
                     </div>
                     <div class="feature-image">
                         <img src="feature-3.png" alt="Listas de compra">
                     </div>
                 </div>
-                <!-- Secondary Features -->
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <div class="item-icon"><i data-lucide="video"></i></div>
+                <!-- Feature Summary -->
+                <div class="feature-summary-grid">
+                    <div class="summary-item">
+                        <i data-lucide="video"></i>
                         <p>Videotutoriales paso a paso</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="item-icon"><i data-lucide="timer"></i></div>
+                    <div class="summary-item">
+                        <i data-lucide="timer"></i>
                         <p>Temporizadores incluidos</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="item-icon"><i data-lucide="shopping-bag"></i></div>
+                    <div class="summary-item">
+                        <i data-lucide="shopping-bag"></i>
                         <p>Descuentos en tiendas locales</p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Download CTA -->
-        <section id="descargar" class="container">
+        <!-- Download Section -->
+        <section id="descargar" class="container download-wrapper">
             <div class="download">
                 <div class="download-content">
                     <h2>Descarga Pantry Chef <span>gratis</span></h2>
@@ -195,19 +210,19 @@
                 </div>
             </div>
         </section>
-        <!-- Newsletter -->
+        <!-- Newsletter Section -->
         <section id="noticias" class="newsletter">
             <div class="container">
                 <h2>Noticias y consejos</h2>
-                <p>Mantente al día con las últimas tendencias culinarias, consejos y novedades de Pantry Chef.</p>
+                <p>Mantente al dia con las ultimas tendencias culinarias, consejos y novedades de Pantry Chef.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Tu correo electrónico" required>
-                    <button type="submit" class="btn btn-dark">Suscribirme</button>
+                    <button type="submit" class="btn btn-dark btn-primary">Suscribirme</button>
                 </form>
             </div>
         </section>
         <!-- Contact & Footer -->
-        <section id="contacto">
+        <footer id="contacto">
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
@@ -238,9 +253,9 @@
                     <div class="footer-col">
                         <h4>Contacto</h4>
                         <ul>
-                            <li>Madrid, España</li>
-                            <li>hola@pantrychef.app</li>
-                            <li>+34 900 123 456</li>
+                            <li><a href="#">Madrid, España</a></li>
+                            <li><a href="#">hola@pantrychef.app</a></li>
+                            <li><a href="#">+34 900 123 456</a></li>
                         </ul>
                     </div>
                 </div>
@@ -249,7 +264,7 @@
                     <p>Made with ❤️ in Madrid</p>
                 </div>
             </div>
-        </section>
+        </footer>
     </main>
     <script src="script.js"></script>
 </body>
