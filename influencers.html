@@ -3,25 +3,6 @@
 <html lang="es">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5P4PHPE5J"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-D5P4PHPE5J');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-T8XFJWWH');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantry Chef - Cocina sin estrés, come con placer</title>
@@ -574,7 +555,7 @@
 
         .influencer-img-container {
             width: 100%;
-            height: 280px;
+            height: 400px;
             overflow: hidden;
             position: relative;
         }
@@ -583,19 +564,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .influencer-tag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--white);
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary-orange);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            object-position: center 15%;
         }
 
         .influencer-body {
@@ -624,6 +593,7 @@
             font-style: italic;
             color: var(--primary-brown);
             margin-top: 20px;
+            text-align: justify;
         }
 
         /* Download Section */
@@ -865,6 +835,603 @@
                 display: none;
             }
         }
+
+        /* --- MODAL RECETAS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            will-change: opacity;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background: var(--bg-light);
+            width: 95%;
+            max-width: 1100px;
+            max-height: 85vh;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.96) translateY(10px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.33s ease-out;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            display: block;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.2);
+            will-change: transform, opacity;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 60px 60px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--white);
+            position: relative;
+        }
+
+        .modal-header h2 {
+            font-size: 48px;
+            color: var(--primary-brown);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .modal-header .sub-title {
+            font-style: italic;
+            color: var(--primary-orange);
+            font-size: 22px;
+            margin-bottom: 24px;
+            font-family: var(--font-heading);
+            font-weight: 500;
+        }
+
+        .modal-header p {
+            font-size: 17px;
+            color: #000;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--bg-neutral);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 0 60px 60px;
+        }
+
+        .modal-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-container::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        .modal-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-container::-webkit-scrollbar-thumb {
+            background: #D7CCC8;
+            border-radius: 4px;
+        }
+
+        .modal-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-orange);
+        }
+
+        .recipes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .recipe-item {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 60px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        #modal-roro.modal-overlay.active .recipe-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .recipe-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .recipe-item:nth-child(even) .recipe-info {
+            direction: ltr;
+        }
+
+        .recipe-img {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            aspect-ratio: 4/3;
+        }
+
+        .recipe-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .recipe-item:hover .recipe-img img {
+            transform: scale(1.08);
+        }
+
+        .recipe-info h3 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: var(--primary-brown);
+            line-height: 1.2;
+        }
+
+        .recipe-detail {
+            margin-bottom: 20px;
+        }
+
+        .recipe-detail b {
+            color: var(--primary-orange);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .recipe-detail p {
+            font-size: 17px;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .recipe-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(230, 81, 0, 0.1);
+            color: var(--primary-orange);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* --- NUEVOS ESTILOS DETALLE RECETA --- */
+        .recipe-meta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .meta-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-neutral);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-brown);
+        }
+
+        .recipe-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .ingredients-section h4, .steps-section h4 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--primary-brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ingredients-list {
+            background: #F9F7F2;
+            padding: 24px;
+            border-radius: 20px;
+            list-style: none;
+        }
+
+        .ingredients-list li {
+            font-size: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .ingredients-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ingredients-list li::before {
+            content: '•';
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        .ingredients-list li::before {
+            content: '•';
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        /* --- RESPONSIVE INFLUENCERS & MODALS --- */
+        @media (max-width: 992px) {
+            .influencers-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .influencer-img-container {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .recipe-inner-body {
+                grid-template-areas: 
+                    "recipe-img-sidebar"
+                    "recipe-main-info"
+                    "steps-section";
+                grid-template-columns: 1fr;
+                padding: 24px;
+                gap: 24px;
+            }
+            
+            .steps-list {
+                column-count: 1 !important;
+            }
+
+            .modal-header h2 {
+                font-size: 34px;
+                line-height:1.2;
+            }
+            
+            .modal-header {
+                padding: 50px 24px 30px;
+            }
+            
+            .modal-body {
+                padding: 0 10px 40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .influencer-body {
+                padding: 30px 20px;
+            }
+            
+            .influencer-body h3 {
+                font-size: 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 28px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .modal-close {
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .recipe-trigger {
+                padding: 20px !important;
+            }
+
+            .recipe-trigger-left {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .recipe-trigger-left .meta-pill {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+
+            .recipe-trigger-left h3 {
+                font-size: 18px;
+            }
+        }
+        /* --- NUEVOS ESTILOS ACORDEÓN --- */
+        .recipes-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .recipe-accordion-item {
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--white);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .recipe-accordion-item.active {
+            border-color: var(--primary-orange);
+            box-shadow: 0 10px 30px rgba(230, 81, 0, 0.08);
+        }
+
+        .recipe-trigger {
+            width: 100%;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            gap: 20px;
+        }
+
+        .recipe-trigger-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .recipe-trigger-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .recipe-trigger h3 {
+            font-size: 20px;
+            margin: 0;
+            color: var(--primary-brown);
+            transition: color 0.3s ease;
+        }
+
+        .recipe-accordion-item.active .recipe-trigger h3 {
+            color: var(--primary-orange);
+        }
+
+        .recipe-status-icon {
+            color: var(--text-muted);
+            transition: transform 0.4s ease;
+        }
+
+        .recipe-accordion-item.active .recipe-status-icon {
+            transform: rotate(180deg);
+            color: var(--primary-orange);
+        }
+
+        .recipe-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .recipe-accordion-item.active .recipe-content {
+            max-height: 2000px; /* Suficiente para el contenido */
+        }
+
+        .recipe-inner-body {
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                "recipe-img-sidebar recipe-main-info"
+                "steps-section steps-section";
+            column-gap: 40px;
+            row-gap: 12px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .recipe-img-sidebar {
+            grid-area: recipe-img-sidebar;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .recipe-img-sidebar img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .recipe-main-info {
+            grid-area: recipe-main-info;
+            text-align: left;
+        }
+
+        .steps-section {
+            grid-area: steps-section;
+            margin-top: 0;
+            padding-top: 20px;
+            text-align: left;
+        }
+
+        .recipe-meta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .steps-list {
+            column-count: 2;
+            column-gap: 40px;
+            list-style: none;
+            counter-reset: recipe-counter;
+            text-align: justify;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 24px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-main);
+            break-inside: avoid-column;
+        }
+
+        .steps-list li::before {
+            counter-increment: recipe-counter;
+            content: counter(recipe-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 34px;
+            height: 34px;
+            background: var(--primary-brown);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 950px) {
+            .recipe-inner-body {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "recipe-img-sidebar"
+                    "recipe-main-info"
+                    "steps-section";
+                padding: 24px;
+            }
+            .steps-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* --- MOBILE NAV --- */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-brown);
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 992px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            header .container {
+                justify-content: space-between;
+                position: relative;
+            }
+
+            header nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 40px 20px;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--border-light);
+                z-index: 1000;
+            }
+
+            header nav.active {
+                display: block;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 24px !important;
+                align-items: center;
+            }
+
+            header nav ul li a {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 993px) {
+            .mobile-only {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -876,6 +1443,9 @@
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
             </a>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <i data-lucide="menu"></i>
+            </button>
             <nav>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
@@ -884,9 +1454,10 @@
                     <li><a href="#producto">Nuestra app</a></li>
                     <li><a href="#noticias">Noticias</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <li class="mobile-only"><a href="demo.html" class="btn btn-primary" style="background: var(--primary-orange); color: var(--white); width: 100%; text-align: center;">Probar demo</a></li>
                 </ul>
             </nav>
-            <a href="demo.html" class="btn btn-primary" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
+            <a href="demo.html" class="btn btn-primary desktop-only" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
         </div>
     </header>
     <main>
@@ -902,28 +1473,27 @@
                     <!-- Influencer 1 -->
                     <div class="influencer-card">
                         <div class="influencer-img-container">
-                            <img src="influencer1.jpg" alt="Influencer Cooking" onerror="this.src='https://placehold.co/600x400?text=Menu+Influencer'">
-                            <div class="influencer-tag">Especial Pantry Chef</div>
+                            <img src="pack-exclusivo-roro.png" alt="Influencer Cooking" onerror="this.src='https://placehold.co/600x400?text=Menu+Influencer'">
                         </div>
-                        <div class="influencer-body">
+                        <div class="influencer-body" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                             <h3>Hemos seleccionado las 5 recetas favoritas de RoRo para que no tengas que pensar el menú</h3>
-                            <p>Sabemos que uno de tus mayores preocupaciones es no saber qué cocinar cada semana. Con este pack exclusivo, solucionamos este problema.</p>
-                            <a href="#descargar" class="btn btn-outline" style="width: auto; padding: 10px 20px;">Ver recetas</a>
+                            <p>Sabemos que lo más difícil de la cocina no es encender el fogón, sino decidir qué vas a poner en el plato. Por eso, hemos colaborado con Roro para seleccionar estas 5 recetas que te salvarán.</p>
+                            <button id="btn-ver-recetas" class="btn btn-outline" style="width: auto; padding: 10px 20px;">Ver recetas</button>
                         </div>
                     </div>
 
                     <!-- Influencer 2 -->
                     <div class="influencer-card">
                         <div class="influencer-img-container">
-                            <img src="influencer2.jpg" alt="Influencer Dinner" onerror="this.src='https://placehold.co/600x400?text=Cena+Rapida'">
-                            <div class="influencer-tag">Contenido Cercano</div>
+                            <img src="cena-boukie.png" alt="Influencer Dinner" onerror="this.src='https://placehold.co/600x400?text=Cena+Rapida'">
                         </div>
-                        <div class="influencer-body">
+                        <div class="influencer-body" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                             <h3>La cena rápida de Boukie para días cansados</h3>
                             <p>Todos tenemos esos días donde no estamos cansados. Descubre ese plato infalible que salva las noches de Boukie.</p>
                             <div class="influencer-quote">
                                 “Esta receta es especial para mí porque en menos de 10 minutos tengo la cena lista”.
                             </div>
+                            <button id="btn-ver-receta-boukie" class="btn btn-outline" style="width: auto; padding: 10px 20px; margin-top: 24px;">Ver receta</button>
                         </div>
                     </div>
                 </div>
@@ -985,11 +1555,331 @@
             </div>
         </footer>
     </main>
+
+    <!-- Modal de Recetas de Roro -->
+    <div id="modal-roro" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" id="close-modal">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Pack exclusivo: Las 5 de Roro</h2>
+                <div class="sub-title">"Porque a Pablo le encanta, pero a ti te va a salvar la semana"</div>
+            </div>
+            <div class="modal-body">
+                <div class="recipes-accordion">
+                    <!-- Receta 1 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-trigger">
+                            <div class="recipe-trigger-left">
+                                <h3>1. Tallarines</h3>
+                                <div class="meta-pill" style="margin-bottom:0;"><i data-lucide="clock" style="width:12px;"></i> 20 min</div>
+                            </div>
+                            <i data-lucide="chevron-down" class="recipe-status-icon"></i>
+                        </button>
+                        <div class="recipe-content">
+                            <div class="recipe-inner-body">
+                                <div class="recipe-img-sidebar">
+                                    <img src="tallarines_roro_1775301278760.png" alt="Tallarines" loading="lazy" decoding="async">
+                                </div>
+                                <div class="recipe-main-info">
+                                    <div class="recipe-meta-group">
+                                        <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Baja</div>
+                                        <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 2 Raciones</div>
+                                    </div>
+                                    <div class="ingredients-section">
+                                        <h4>Ingredientes</h4>
+                                        <ul class="ingredients-list">
+                                            <li>250g de tallarines.</li>
+                                            <li>60g de mantequilla.</li>
+                                            <li>10 hojas de salvia.</li>
+                                            <li>Ralladura y jugo de limón.</li>
+                                            <li>Parmesano, sal y pimienta.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="steps-section">
+                                    <h4>Pasos para la preparación</h4>
+                                    <ul class="steps-list">
+                                        <li>Hierve la pasta al dente y reserva una taza del agua de cocción.</li>
+                                        <li>En una sartén, funde la mantequilla a fuego medio hasta que empiece a espumar y adquiera un color avellana.</li>
+                                        <li>Añade las hojas de salvia y deja que se vuelvan crujientes.</li>
+                                        <li>Incorpora la pasta directamente a la sartén junto con un chorrito de limón y un poco del agua de cocción.</li>
+                                        <li>Mantén el fuego bajo y remueve con energía para crear una emulsión.</li>
+                                        <li>Sirve con parmesano recién rallado.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Receta 2 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-trigger">
+                            <div class="recipe-trigger-left">
+                                <h3>2. El sándwich de focaccia</h3>
+                                <div class="meta-pill" style="margin-bottom:0;"><i data-lucide="clock" style="width:12px;"></i> 15 min</div>
+                            </div>
+                            <i data-lucide="chevron-down" class="recipe-status-icon"></i>
+                        </button>
+                        <div class="recipe-content">
+                            <div class="recipe-inner-body">
+                                <div class="recipe-img-sidebar">
+                                    <img src="focaccia_roro_1775301429588.png" alt="Focaccia" loading="lazy" decoding="async">
+                                </div>
+                                <div class="recipe-main-info">
+                                    <div class="recipe-meta-group">
+                                        <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Muy Baja</div>
+                                        <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 1 Ración</div>
+                                    </div>
+                                    <div class="ingredients-section">
+                                        <h4>Ingredientes</h4>
+                                        <ul class="ingredients-list">
+                                            <li>1 trozo de focaccia artesana.</li>
+                                            <li>100g de mortadela de Bolonia fina.</li>
+                                            <li>1 bola de burrata.</li>
+                                            <li>2 cucharadas de pesto de pistacho.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="steps-section">
+                                    <h4>Pasos para la preparación</h4>
+                                    <ul class="steps-list">
+                                        <li>Tuesta ligeramente el interior de la focaccia en una sartén.</li>
+                                        <li>Extiende el pesto de pistacho en la base de la focaccia.</li>
+                                        <li>Coloca la mortadela de forma "voluminosa" creando ondas para mayor textura.</li>
+                                        <li>Abre la burrata encima y extiéndela con delicadeza.</li>
+                                        <li>Presiona ligeramente y disfruta al momento.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Receta 3 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-trigger">
+                            <div class="recipe-trigger-left">
+                                <h3>3. Risotto de setas y trufa</h3>
+                                <div class="meta-pill" style="margin-bottom:0;"><i data-lucide="clock" style="width:12px;"></i> 35 min</div>
+                            </div>
+                            <i data-lucide="chevron-down" class="recipe-status-icon"></i>
+                        </button>
+                        <div class="recipe-content">
+                            <div class="recipe-inner-body">
+                                <div class="recipe-img-sidebar">
+                                    <img src="risotto_roro_1775301451580.png" alt="Risotto" loading="lazy" decoding="async">
+                                </div>
+                                <div class="recipe-main-info">
+                                    <div class="recipe-meta-group">
+                                        <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Media</div>
+                                        <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 2 Raciones</div>
+                                    </div>
+                                    <div class="ingredients-section">
+                                        <h4>Ingredientes</h4>
+                                        <ul class="ingredients-list">
+                                            <li>Arroz Carnaroli (200g).</li>
+                                            <li>Setas variadas (300g).</li>
+                                            <li>Caldo de verdura y vino blanco.</li>
+                                            <li>Aceite de trufa para el final.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="steps-section">
+                                    <h4>Pasos para la preparación</h4>
+                                    <ul class="steps-list">
+                                        <li>Saltea las setas hasta dorar y reserva.</li>
+                                        <li>En la misma olla pocha chalota, añade el arroz y nacara.</li>
+                                        <li>Añade vino y luego el caldo cacito a cacito removiendo constantemente.</li>
+                                        <li>Reincorpora las setas a mitad de cocción.</li>
+                                        <li>Apaga el fuego, añade mantequilla fría y parmesano. Remueve con energía.</li>
+                                        <li>Sirve con unas gotas de aceite de trufa.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Receta 4 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-trigger">
+                            <div class="recipe-trigger-left">
+                                <h3>4. Pollo marinado en hierbas y miel</h3>
+                                <div class="meta-pill" style="margin-bottom:0;"><i data-lucide="clock" style="width:12px;"></i> 50 min</div>
+                            </div>
+                            <i data-lucide="chevron-down" class="recipe-status-icon"></i>
+                        </button>
+                        <div class="recipe-content">
+                            <div class="recipe-inner-body">
+                                <div class="recipe-img-sidebar">
+                                    <img src="pollo_roro_1775301507833.png" alt="Pollo" loading="lazy" decoding="async">
+                                </div>
+                                <div class="recipe-main-info">
+                                    <div class="recipe-meta-group">
+                                        <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Baja</div>
+                                        <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 2-3 Raciones</div>
+                                    </div>
+                                    <div class="ingredients-section">
+                                        <h4>Ingredientes</h4>
+                                        <ul class="ingredients-list">
+                                            <li>4 contramuslos de pollo.</li>
+                                            <li>2 cdas de miel y 1 de mostaza.</li>
+                                            <li>Patatas panadera y espárragos.</li>
+                                            <li>Romero y tomillo frescos.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="steps-section">
+                                    <h4>Pasos para la preparación</h4>
+                                    <ul class="steps-list">
+                                        <li>Mezcla la miel, mostaza y hierbas. Marina el pollo 15 min.</li>
+                                        <li>Coloca patatas en rodajas finas en la bandeja con sal y aceite.</li>
+                                        <li>Coloca el pollo sobre patatas y hornea a 200°C por 35 min.</li>
+                                        <li>Acompaña con espárragos los últimos 15 minutos.</li>
+                                        <li>Sube el grill al final para una piel extra crujiente.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Receta 5 -->
+                    <div class="recipe-accordion-item">
+                        <button class="recipe-trigger">
+                            <div class="recipe-trigger-left">
+                                <h3>5. Tarta de queso</h3>
+                                <div class="meta-pill" style="margin-bottom:0;"><i data-lucide="clock" style="width:12px;"></i> 40 min</div>
+                            </div>
+                            <i data-lucide="chevron-down" class="recipe-status-icon"></i>
+                        </button>
+                        <div class="recipe-content">
+                            <div class="recipe-inner-body">
+                                <div class="recipe-img-sidebar">
+                                    <img src="tarta_queso_roro_1775301535840.png" alt="Tarta" loading="lazy" decoding="async">
+                                </div>
+                                <div class="recipe-main-info">
+                                    <div class="recipe-meta-group">
+                                        <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Media</div>
+                                        <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 4-6 Raciones</div>
+                                    </div>
+                                    <div class="ingredients-section">
+                                        <h4>Ingredientes</h4>
+                                        <ul class="ingredients-list">
+                                            <li>500g queso crema.</li>
+                                            <li>3 huevos y 200ml de nata (35% M.G.).</li>
+                                            <li>150g de azúcar y 1 cda de harina.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="steps-section">
+                                    <h4>Pasos para la preparación</h4>
+                                    <ul class="steps-list">
+                                        <li>Mezcla el queso crema con el azúcar hasta que no haya grumos.</li>
+                                        <li>Añade huevos uno a uno e incorpora nata y harina tamizada.</li>
+                                        <li>Vierte en molde forrado y hornea 30 min a 210°C.</li>
+                                        <li>La clave es el reposo: al menos 4 horas antes de desmoldar.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BOUKIE -->
+    <div id="modal-boukie" class="modal-overlay">
+        <div class="modal-container">
+            <button id="close-modal-boukie" class="modal-close">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-header">
+                <h2>El "glow-up" Bowl de 8 minutos</h2>
+                <div class="sub-title">"Fresco, saciante y con ese toque crunchy"</div>
+                <p>Es perfecto para cuando el hambre aprieta y el tiempo escasea.</p>
+            </div>
+            <div class="modal-body">
+                <div class="recipe-inner-body" style="border-top: none;">
+                    <div class="recipe-img-sidebar">
+                        <img src="glowup_bowl_boukie_1775309391928.png" alt="Glow-up Bowl" loading="lazy" decoding="async">
+                    </div>
+                    <div class="recipe-main-info">
+                        <div class="recipe-meta-group">
+                            <div class="meta-pill"><i data-lucide="clock" style="width:14px;"></i> 8 min</div>
+                            <div class="meta-pill"><i data-lucide="bar-chart-2" style="width:14px;"></i> Muy Fácil</div>
+                            <div class="meta-pill"><i data-lucide="users" style="width:14px;"></i> 1 Ración</div>
+                        </div>
+                        <div class="ingredients-section">
+                            <h4>Ingredientes</h4>
+                            <ul class="ingredients-list">
+                                <li>Una bolsa de brotes tiernos o canónigos (lavados, por favor).</li>
+                                <li>Una lata de atún claro de calidad o unos garbanzos de bote.</li>
+                                <li><b>El toque Boukie:</b> 1/2 aguacate.</li>
+                                <li>Una tostada de pan de masa madre o un vasito de quinoa.</li>
+                                <li>Semillas de cáñamo o sésamo y un toque de chile seco (opcional).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="steps-section">
+                        <h4>Paso a paso</h4>
+                        <ul class="steps-list">
+                            <li>En un bol, coloca la base de verdes. No escatimes, queremos volumen.</li>
+                            <li>Añade la lata de atún en el centro. Si usas aguacate, córtalo en láminas finas y ábrelo en abanico.</li>
+                            <li>Mezcla aceite de oliva virgen extra, zumo de medio limón y una cucharadita de mostaza antigua. Agita y vierte.</li>
+                            <li>Espolvorea las semillas y el chile. Si quieres, acompaña con el pan tostado.</li>
+                        </ul>
+                    </div>
+                    <div class="influencer-quote" style="grid-column: span 2; margin-top: 40px; background: #F9F7F2; padding: 30px; border-radius: 20px;">
+                        <h4 style="margin-bottom: 15px; color: var(--primary-brown);">¿Por qué es la receta de Boukie?</h4>
+                        <p style="font-size: 18px; line-height: 1.6; color: var(--primary-brown); font-style: italic;">
+                            "La verdad es que lo que más me gusta de este plato no es solo que se tarda nada en hacer, sino que te hace sentir bien. Es como un abrazo nutricional después de un día de locos, sin tener que recurrir a pedir comida a domicilio."
+                        </p>
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(0,0,0,0.1);">
+                        <p style="font-size: 15px; color: var(--primary-orange); font-weight: 700;">
+                            💡 TIP EXTRA: Si te sientes con un pelín más de energía, añade un huevo poché (3 minutos en agua hirviendo) y verás cómo el plato sube de nivel automáticamente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Lucide icons
             if (window.lucide) {
                 window.lucide.createIcons();
+            }
+
+            // --- LÓGICA NAV MÓVIL ---
+            const navToggle = document.getElementById('mobile-nav-toggle');
+            const navMenu = document.querySelector('header nav');
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    const icon = navToggle.querySelector('i');
+                    if (navMenu.classList.contains('active')) {
+                        icon.setAttribute('data-lucide', 'x');
+                    } else {
+                        icon.setAttribute('data-lucide', 'menu');
+                    }
+                    if (window.lucide) {
+                        window.lucide.createIcons();
+                    }
+                });
+
+                // Cerrar al clickear un link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        const icon = navToggle.querySelector('i');
+                        icon.setAttribute('data-lucide', 'menu');
+                        if (window.lucide) {
+                            window.lucide.createIcons();
+                        }
+                    });
+                });
             }
             // Counter Animation
             const counter = document.getElementById('counter');
@@ -1046,6 +1936,100 @@
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // --- LÓGICA MODAL RORO ---
+            const modalRoro = document.getElementById('modal-roro');
+            const btnVerRecetas = document.getElementById('btn-ver-recetas');
+            const closeModal = document.getElementById('close-modal');
+
+            if (btnVerRecetas && modalRoro) {
+                btnVerRecetas.addEventListener('click', () => {
+                    modalRoro.style.display = 'flex';
+                    // Usar requestAnimationFrame para asegurar que el navegador ha procesado el cambio de display
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            modalRoro.classList.add('active');
+                            document.body.style.overflow = 'hidden'; 
+                        });
+                    });
+                });
+            }
+
+            if (closeModal && modalRoro) {
+                closeModal.addEventListener('click', () => {
+                    modalRoro.classList.remove('active');
+                    setTimeout(() => {
+                        modalRoro.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 400); // Mismo tiempo que la transición
+                });
+
+                // Cerrar al clickear fuera
+                modalRoro.addEventListener('click', (e) => {
+                    if (e.target === modalRoro) {
+                        closeModal.click();
+                    }
+                });
+            }
+            
+            // --- LÓGICA MODAL BOUKIE ---
+            const modalBoukie = document.getElementById('modal-boukie');
+            const btnVerRecetaBoukie = document.getElementById('btn-ver-receta-boukie');
+            const closeModalBoukie = document.getElementById('close-modal-boukie');
+
+            if (btnVerRecetaBoukie && modalBoukie) {
+                btnVerRecetaBoukie.addEventListener('click', () => {
+                    modalBoukie.style.display = 'flex';
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            modalBoukie.classList.add('active');
+                            document.body.style.overflow = 'hidden'; 
+                        });
+                    });
+                });
+            }
+
+            if (closeModalBoukie && modalBoukie) {
+                closeModalBoukie.addEventListener('click', () => {
+                    modalBoukie.classList.remove('active');
+                    setTimeout(() => {
+                        modalBoukie.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 400); 
+                });
+
+                modalBoukie.addEventListener('click', (e) => {
+                    if (e.target === modalBoukie) {
+                        closeModalBoukie.click();
+                    }
+                });
+            }
+
+            // --- LÓGICA ACORDEÓN ---
+            const accordionItems = document.querySelectorAll('.recipe-accordion-item');
+            accordionItems.forEach(item => {
+                const trigger = item.querySelector('.recipe-trigger');
+                trigger.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Cerrar otros
+                    accordionItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Abrir si no estaba activo
+                    if (!isActive) {
+                        item.classList.add('active');
+                        
+                        // Hacer scroll suave hacia el inicio del item abierto
+                        setTimeout(() => {
+                            item.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'start', 
+                                inline: 'nearest' 
+                            });
+                        }, 300); // Pequeño delay para que la animación de apertura esté en marcha
                     }
                 });
             });
