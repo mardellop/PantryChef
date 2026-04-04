@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -191,8 +192,7 @@
 
         /* Hero Section */
         .hero {
-            padding-top: calc(var(--header-height) + 100px);
-            padding-bottom: 150px;
+            padding-top: calc(var(--header-height) + 0px);
             background-color: var(--bg-light);
             position: relative;
             min-height: 100vh;
@@ -245,9 +245,10 @@
         .hero p {
             font-size: 18px;
             line-height: 28px;
-            color: var(--text-muted);
+            color: var(--text-main);
             margin-bottom: 32px;
             max-width: 520px;
+            text-align: justify;
         }
 
         .hero-btns {
@@ -311,7 +312,7 @@
         }
 
         .section-header h2 {
-            font-size: 48px;
+            font-size: 58px;
             line-height: 48px;
             margin-bottom: 24px;
             color: var(--primary-brown);
@@ -320,12 +321,12 @@
         .section-header p {
             font-size: 18px;
             line-height: 28px;
-            color: var(--text-muted);
+            color: #000;
         }
 
         /* About Section */
         .about {
-            padding: 120px 0;
+            padding: 50px 0;
             background-color: var(--white);
         }
 
@@ -402,7 +403,8 @@
             font-size: 18px;
             line-height: 28px;
             margin-bottom: 20px;
-            color: var(--text-muted);
+            color: var(--text-main);
+            text-align: justify;
         }
 
         .about-content b {
@@ -417,7 +419,7 @@
 
         /* Values Section */
         .values {
-            padding: 120px 0;
+            padding: 50px 0;
             background-color: var(--bg-neutral);
         }
 
@@ -429,7 +431,7 @@
 
         .value-card {
             background: var(--white);
-            padding: 40px;
+            padding: 20px;
             border-radius: 24px;
             border: 1px solid var(--border-light);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
@@ -461,14 +463,15 @@
         }
 
         .value-card p {
-            color: var(--text-muted);
+            color: #000;
             font-size: 15px;
             line-height: 24px;
+            text-align: justify;
         }
 
         /* Product Section */
         .product {
-            padding: 120px 0;
+            padding: 50px 0;
             background-color: var(--white);
         }
 
@@ -514,7 +517,8 @@
         .feature-content p {
             font-size: 18px;
             line-height: 28px;
-            color: var(--text-muted);
+            color: #000;
+            text-align: justify;
         }
 
         .feature-summary-grid {
@@ -541,6 +545,86 @@
             font-size: 14px;
             font-weight: 600;
             color: var(--primary-brown);
+        }
+
+  /* --- NUEVA SECCIÓN: INFLUENCERS --- */
+        .influencers {
+            padding: 120px 0;
+            background-color: var(--bg-neutral);
+        }
+
+        .influencers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 40px;
+        }
+
+        .influencer-card {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .influencer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+
+        .influencer-img-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .influencer-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .influencer-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .influencer-body {
+            padding: 40px;
+        }
+
+        .influencer-body h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--primary-brown);
+            line-height: 1.2;
+        }
+
+        .influencer-body p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 26px;
+            margin-bottom: 24px;
+        }
+
+        .influencer-quote {
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-orange);
+            font-style: italic;
+            color: var(--primary-brown);
+            margin-top: 20px;
         }
 
         /* Download Section */
@@ -605,7 +689,7 @@
         /* Newsletter */
         .newsletter {
             background: var(--bg-neutral);
-            padding: 120px 0;
+            padding: 80px 0;
             text-align: center;
         }
 
@@ -616,7 +700,7 @@
 
         .newsletter p {
             font-size: 18px;
-            color: var(--text-muted);
+            color: #000;
             margin-bottom: 48px;
         }
 
@@ -801,10 +885,10 @@
                     <li><a href="#producto">Nuestra app</a></li>
                     <li><a href="#noticias">Noticias</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="influencers.html">Influencers</a></li>
                 </ul>
             </nav>
-            <a href="demo.html" class="btn btn-primary" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">✨ Probar Demo</a>
-            <a href="#descargar" class="btn btn-primary">Descargar App</a>
+            <a href="demo.html" class="btn btn-primary" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
         </div>
     </header>
     <main>
@@ -812,14 +896,9 @@
         <section id="inicio" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="badge">Prep, Dish & Go</div>
                     <h1>Cocina sin estrés, <br><span>come con placer</span></h1>
                     <p>Pantry Chef te ayuda a preparar comidas saludables con lo que ya tienes en casa. Sin
                         planificación, sin complicaciones.</p>
-                    <div class="hero-btns">
-                        <a href="#descargar" class="btn btn-primary btn-large">Descargar gratis</a>
-                        <a href="#nosotros" class="btn btn-outline btn-large">Conocer más</a>
-                    </div>
                 </div>
                 <div class="hero-image">
                     <img src="Pantry Chef Logo.png" alt="Pantry Chef Logo">
@@ -840,16 +919,11 @@
                     </div>
                 </div>
                 <div class="about-content">
-                    <h4>Nuestra historia</h4>
                     <h2>Tu mejor compañero en la cocina</h2>
-                    <p>Somos <b>Pantry Chef</b>, una aplicación móvil diseñada para que cocinar sea una experiencia
-                        sencilla, nutritiva y, sobre todo, sin estrés.</p>
-                    <p>Nuestro público objetivo son <b>estudiantes y profesionales</b> que no tienen tiempo para
-                        planificar las comidas de la semana, pero que no quieren renunciar a una alimentación saludable.
+                    <p>Somos <b>Pantry Chef</b>, una aplicación móvil diseñada para que cocinar sea una experiencia sencilla, nutritiva y, sobre todo, sin estrés.</p>
+                    <p>Está pensado <b>para ti</b>, que no tienes tiempo para planificar las comidas de la semana, pero que tampoco quieres renunciar a una alimentación saludable.
                     </p>
-                    <p>Utilizamos la tecnología para que el usuario aproveche todo lo que tiene en casa y, además, pueda
-                        conectarse con la mejor comunidad. Queremos que cocinar deje de ser una tarea pendiente para
-                        convertirse en <span class="highlight">algo disfrutable y sostenible</span>.</p>
+                    <p>Utilizamos la tecnología para que aproveches todo lo que tienes en casa y que puedas conectarte con <b>la mejor comunidad</b>. Queremos que cocinar deje de ser una tarea pendiente para convertirse en <span class="highlight">algo disfrutable y sostenible</span>.</p>
                 </div>
             </div>
         </section>
@@ -863,32 +937,27 @@
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="zap"></i></div>
                         <h3>Conveniencia</h3>
-                        <p>Si no es fácil, no nos sirve. Todo en la app está pensado para ahorrar tiempo y no
-                            complicarle la vida nuestros clientes.</p>
+                        <p>Si no es fácil, no nos sirve. Todo está pensado para ahorrar tiempo y no complicar la vida de nuestros clientes.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="settings"></i></div>
                         <h3>Personalización</h3>
-                        <p>Cada persona y cada paladar es un mundo. Nos adaptamos a los gustos y hábitos de nuestros
-                            clientes.</p>
+                        <p>Cada persona y cada paladar es un mundo. Nos adaptamos a los gustos y hábitos de nuestros clientes.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="heart"></i></div>
                         <h3>Salud y bienestar</h3>
-                        <p>Creemos firmemente que comer sano no debería ser un lujo. Por eso, proponemos recetas
-                            nutritivas para
-                            todos.</p>
+                        <p>Creemos firmemente que comer sano no debería ser un lujo. Por eso, proponemos recetas nutritivas.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="users"></i></div>
                         <h3>Comunidad</h3>
-                        <p>Fomentamos el intercambio de ideas porque cocinar también es compartir con otros.</p>
+                        <p>Fomentamos el intercambio de ideas, porque cocinar también es compartir con otros.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-icon"><i data-lucide="leaf"></i></div>
                         <h3>Sostenibilidad</h3>
-                        <p>Al ayudar a cocinar con lo que tienes, reducimos el desperdicio de alimentos y cuidamos el
-                            planeta.</p>
+                        <p>Al ayudar a cocinar con lo que el cliente tiene, reducimos el desperdicio de alimentos y cuidamos el planeta.</p>
                     </div>
                 </div>
             </div>
@@ -899,21 +968,19 @@
                 <div class="section-header">
                     <div class="feature-badge"
                         style="background: #FFF5F2; color: #E65100; border-radius: 9999px; padding: 4px 16px; margin-bottom: 24px;">
-                        Nuestro producto</div>
+                        NUESTROS SERVICIOS</div>
                     <h2>Todo lo que necesitas para cocinar</h2>
-                    <p>Tú pones los ingredientes, nosotros ponemos la idea. Todo en un solo lugar, fluido y sin
-                        fricciones.</p>
+                    <p>Tú pones los ingredientes, nosotros ponemos la idea</p>
                 </div>
                 <!-- Feature 1 -->
                 <div class="product-feature">
                     <div class="feature-content">
                         <div class="feature-badge">FUNCIÓN 1</div>
-                        <h2>Recetas con IA</h2>
-                        <p>Dinos qué tienes en tu despensa y nuestra inteligencia artificial te propondrá recetas
-                            nutritivas y fáciles de preparar.</p>
+                        <h2>Recetas personalizadas</h2>
+                        <p>Dinos qué tienes en tu despensa y nosotros te propondremos recetas nutritivas y fáciles de preparar.</p>
                     </div>
                     <div class="feature-image">
-                        <img src="feature-1.png" alt="Recetas con IA">
+                        <img src="feature-1.png" alt="Recetas personalizadas">
                     </div>
                 </div>
                 <!-- Feature 2 -->
@@ -932,7 +999,7 @@
                 <div class="product-feature">
                     <div class="feature-content">
                         <div class="feature-badge">FUNCIÓN 3</div>
-                        <h2>Listas de compra inteligentes</h2>
+                        <h2>Lista de compra inteligente</h2>
                         <p>Crea listas automáticas con lo que te falta, conecta con tiendas locales y obtén descuentos
                             exclusivos.</p>
                     </div>
@@ -957,6 +1024,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Download Section -->
         <section id="descargar" class="container download-wrapper">
             <div class="download">
@@ -1007,9 +1075,9 @@
                     <div class="footer-col">
                         <h4>Nuestros servicios</h4>
                         <ul>
-                            <li><a href="#">Recetas con IA</a></li>
+                            <li><a href="#">Recetas personalizadas</a></li>
                             <li><a href="#">Comunidad Pantry Chef</a></li>
-                            <li><a href="#">Listas de compra inteligentes</a></li>
+                            <li><a href="#">Lista de compra inteligente</a></li>
                             <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j">Eventos</a></li>
                         </ul>
                     </div>
@@ -1033,7 +1101,6 @@
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; 2026 Pantry Chef. Todos los derechos reservados.</p>
-                    <p>Hecho con ❤️ en Sevilla</p>
                 </div>
             </div>
         </footer>
