@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry Chef – Demo interactiva</title>
+    <title>Pantry Chef</title>
     <meta name="description" content="Prueba Pantry Chef gratis: selecciona 3 ingredientes y descubre las recetas que puedes preparar ahora mismo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,34 +51,59 @@
             padding: 0 1.5rem;
         }
 
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-orange);
+        }
+
         /* ── HEADER ──────────────────────────────────── */
+        /* Header */
         header {
             position: fixed;
-            top: 0; left: 0; width: 100%;
-            height: 72px;
-            background: rgba(253, 251, 247, 0.85);
-            backdrop-filter: blur(20px);
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
             border-bottom: 1px solid var(--border-light);
-            z-index: 900;
             display: flex;
             align-items: center;
         }
+
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.75rem;
             font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 700;
             color: var(--primary-brown);
         }
-        .logo img { height: 44px; }
+
+        .logo img {
+            height: 48px;
+        }
+
         .header-right { display: flex; align-items: center; gap: 1rem; }
         .btn {
             display: inline-flex;
@@ -117,7 +142,6 @@
         /* ── HERO DEMO ───────────────────────────────── */
         .demo-hero {
             padding-top: calc(72px + 80px);
-            padding-bottom: 64px;
             text-align: center;
         }
         .demo-hero .badge {
@@ -157,7 +181,7 @@
         }
         .demo-hero p {
             font-size: 18px;
-            color: var(--text-muted);
+            color: #000;
             max-width: 520px;
             margin: 0 auto 0;
             line-height: 1.7;
@@ -237,16 +261,19 @@
         }
         .ingredients-header {
             text-align: center;
-            margin-bottom: 40px;
+            max-width: 700px;
+            margin: 0 auto 64px;
         }
         .ingredients-header h2 {
-            font-size: 36px;
+            font-size: 48px;
+            line-height: 48px;
+            margin-bottom: 24px;
             color: var(--primary-brown);
-            margin-bottom: 10px;
         }
         .ingredients-header p {
-            color: var(--text-muted);
-            font-size: 16px;
+            font-size: 18px;
+            line-height: 28px;
+            color: #000;
         }
 
         /* Counter badge */
@@ -339,7 +366,7 @@
         .chip-name {
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-main);
+            color: #000;
             text-align: center;
             line-height: 1.3;
         }
@@ -392,7 +419,7 @@
             color: var(--primary-brown);
             margin-bottom: 12px;
         }
-        .results-header p { color: var(--text-muted); font-size: 16px; }
+        .results-header p { color: #000; font-size: 16px; }
 
         .recipe-grid {
             display: grid;
@@ -579,7 +606,7 @@
         .lock-text {
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-muted);
+            color: #000;
             text-align: center;
         }
 
@@ -633,9 +660,11 @@
         }
         .modal {
             background: var(--white);
-            border-radius: 32px;
-            padding: 48px 40px 40px;
-            max-width: 460px;
+            border-radius: 28px;
+            padding: 32px 32px 28px;
+            max-width: 440px;
+            max-height: 92vh;
+            overflow-y: auto;
             width: 100%;
             position: relative;
             text-align: center;
@@ -664,75 +693,76 @@
         .modal-close svg { width: 16px; height: 16px; }
 
         .modal-icon {
-            width: 80px; height: 80px;
+            width: 60px; height: 60px;
             background: linear-gradient(135deg, #E65100 0%, #BF360C 100%);
-            border-radius: 24px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            box-shadow: 0 12px 32px rgba(230,81,0,0.35);
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 24px rgba(230,81,0,0.35);
         }
-        .modal-icon svg { width: 36px; height: 36px; color: var(--white); }
+        .modal-icon svg { width: 28px; height: 28px; color: var(--white); }
         .modal-recipe-name {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--primary-orange);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .modal h2 {
-            font-size: 30px;
-            line-height: 1.15;
+            font-size: 22px;
+            line-height: 1.2;
             color: var(--primary-brown);
-            margin-bottom: 14px;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
         }
         .modal p {
-            font-size: 16px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 32px;
+            font-size: 14px;
+            color: #000;
+            line-height: 1.55;
+            padding-bottom: 10px;
         }
         .modal-features {
             background: var(--bg-neutral);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 28px;
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
             text-align: left;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 7px;
         }
         .modal-feature-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--primary-brown);
         }
-        .modal-feature-item svg { width: 16px; height: 16px; color: var(--primary-orange); }
+        .modal-feature-item svg { width: 14px; height: 14px; color: var(--primary-orange); }
         .modal-btns {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
         .store-btn-modal {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 15px 24px;
-            border-radius: 14px;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             font-family: var(--font-body);
             cursor: pointer;
             border: none;
             transition: all 0.2s;
         }
-        .store-btn-modal svg { width: 20px; height: 20px; }
+        .store-btn-modal svg { width: 18px; height: 18px; }
         .store-btn-modal.apple {
             background: var(--primary-brown);
             color: var(--white);
@@ -755,26 +785,26 @@
         .modal-recipe-preview {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: var(--bg-neutral);
-            border-radius: 14px;
-            padding: 12px 14px;
-            margin-bottom: 24px;
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
             text-align: left;
         }
         .modal-recipe-preview img {
-            width: 56px;
-            height: 56px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             object-fit: cover;
         }
         .modal-recipe-preview .name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--primary-brown);
         }
         .modal-recipe-preview .sub {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             margin-top: 2px;
         }
@@ -842,37 +872,73 @@
         @media (max-width: 480px) {
             .ingredient-grid { grid-template-columns: repeat(3, 1fr); }
         }
+
+        /* ── FIND RECIPES BUTTON ──────────────────────── */
+        .btn-find-recipes {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 36px;
+            border-radius: 9999px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: not-allowed;
+            background: var(--bg-neutral);
+            color: var(--text-muted);
+            border: 2px solid var(--border-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.01em;
+        }
+        .btn-find-recipes.ready {
+            cursor: pointer;
+            background: var(--primary-brown);
+            color: var(--white);
+            border-color: var(--primary-brown);
+            box-shadow: 0 8px 28px rgba(62, 39, 35, 0.25);
+        }
+        .btn-find-recipes.ready:hover {
+            background: #1a0f0d;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(62, 39, 35, 0.32);
+        }
+        .btn-find-recipes.ready:active {
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
 
 <!-- ── HEADER ── -->
-<header>
-    <div class="container">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Pantry Chef Logo">
-            Pantry Chef
-        </a>
-        <div class="header-right">
-            <a href="index.html" class="btn btn-back">
-                <i data-lucide="arrow-left"></i> Volver
+    <header>
+        <div class="containerWide container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Pantry Chef Logo">
+                Pantry Chef
             </a>
-            <a href="#descargar" class="btn btn-primary">
-                Descargar gratis
-            </a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Sobre nosotros</a></li>
+                    <li><a href="#valores">Nuestros valores</a></li>
+                    <li><a href="#noticias">Noticias</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-</header>
+    </header>
 
 <!-- ── HERO ── -->
 <section class="demo-hero">
     <div class="container">
         <div class="badge">
             <span class="dot"></span>
-            Demo interactiva
+            Demo de la app Pantry Chef
         </div>
-        <h1>Dinos qué tienes<br>y te damos la <em>receta</em></h1>
-        <p>Marca 3 ingredientes de tu despensa y Pantry Chef encontrará las recetas perfectas para ti.</p>
+        <h1>Tú nos das los ingredientes<br>y nosotros te damos el <em>banquete</em></h1>
+        <p>Selecciona hasta 3 ingredientes que tengas por casa y Pantry Chef encontrará la receta perfecta para ti.</p>
     </div>
 </section>
 
@@ -885,7 +951,7 @@
         </div>
         <div class="step-item" id="step2">
             <div class="step-num">2</div>
-            <span class="step-label">Recetas</span>
+            <span class="step-label">Receta</span>
         </div>
         <div class="step-item" id="step3">
             <div class="step-num">3</div>
@@ -899,13 +965,19 @@
     <div class="container">
         <div class="ingredients-header">
             <h2>¿Qué tienes en casa?</h2>
-            <p>Selecciona exactamente <strong>3 ingredientes</strong></p>
+            <p>Selecciona entre <strong>1 y 3 ingredientes</strong> que tengas en casa</p>
         </div>
 
         <div style="text-align:center; margin-bottom: 32px;">
             <div class="counter-badge" id="counterBadge">
                 <i data-lucide="check-circle-2" style="width:16px;height:16px;"></i>
                 <span class="counter-num" id="counterNum">0</span> / 3 seleccionados
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="btn-find-recipes" id="btnFindRecipes" onclick="findRecipes()" disabled>
+                    <i data-lucide="search" style="width:17px;height:17px;"></i>
+                    Ver mis recetas
+                </button>
             </div>
         </div>
 
@@ -943,11 +1015,6 @@
                     <span class="chip-name">Pimiento</span>
                     <span class="chip-check">✓</span>
                 </div>
-                <div class="ingredient-chip" data-id="limon" onclick="toggleIngredient(this)">
-                    <span class="chip-emoji">🍋</span>
-                    <span class="chip-name">Limón</span>
-                    <span class="chip-check">✓</span>
-                </div>
             </div>
         </div>
 
@@ -965,9 +1032,9 @@
                     <span class="chip-name">Pollo</span>
                     <span class="chip-check">✓</span>
                 </div>
-                <div class="ingredient-chip" data-id="lentejas" onclick="toggleIngredient(this)">
-                    <span class="chip-emoji">🫘</span>
-                    <span class="chip-name">Lentejas</span>
+                <div class="ingredient-chip" data-id="pan" onclick="toggleIngredient(this)">
+                    <span class="chip-emoji">🍞</span> 
+                    <span class="chip-name">Pan</span>
                     <span class="chip-check">✓</span>
                 </div>
                 <div class="ingredient-chip" data-id="queso" onclick="toggleIngredient(this)">
@@ -985,11 +1052,6 @@
                     <span class="chip-name">Arroz</span>
                     <span class="chip-check">✓</span>
                 </div>
-                <div class="ingredient-chip" data-id="pan" onclick="toggleIngredient(this)">
-                    <span class="chip-emoji">🍞</span>
-                    <span class="chip-name">Pan</span>
-                    <span class="chip-check">✓</span>
-                </div>
             </div>
         </div>
 
@@ -1000,9 +1062,9 @@
 <section class="section-results" id="resultsSection">
     <div class="container">
         <div class="results-header">
-            <div class="tag">✨ Recetas encontradas</div>
+            <div class="tag">Recetas pensadas para ti</div>
             <h2 id="resultsTitle">Perfecto para lo que tienes</h2>
-            <p>Hemos encontrado <strong>2 recetas</strong> con tus ingredientes. Descarga la app para ver los pasos completos.</p>
+            <p>Hemos preparado <strong>2 recetas</strong> con tus ingredientes. Descarga la app para ver todos los detalles.</p>
         </div>
 
         <div class="recipe-grid" id="recipeGrid">
@@ -1014,15 +1076,15 @@
 <!-- ── BOTTOM CTA ── -->
 <section class="bottom-cta" id="descargar">
     <div class="container">
-        <h2>Cocina más, <span>desperdicia menos</span></h2>
-        <p>Miles de recetas, temporizadores inteligentes y una comunidad que te inspira cada día.</p>
+        <h2>Prep, Dish and Go</h2>
+        <p>Miles de recetas, temporizadores inteligentes, una comunidad que te inspira cada día y mucho más.</p>
         <div class="cta-btns">
-            <button class="store-cta apple" onclick="openModal(null)">
+            <a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener" class="store-cta apple">
                 <i data-lucide="apple"></i> App Store
-            </button>
-            <button class="store-cta google" onclick="openModal(null)">
+            </a>
+            <a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener" class="store-cta google">
                 <i data-lucide="play"></i> Google Play
-            </button>
+            </a>
         </div>
     </div>
 </section>
@@ -1030,20 +1092,13 @@
 <!-- ── FOOTER ── -->
 <footer>
     <div class="container">
-        <p>© 2026 Pantry Chef · Hecho con ❤️ en Sevilla · <a href="index.html">Volver al sitio</a></p>
+        <p>© 2026 Pantry Chef · Hecho con ♡  en Sevilla ·</p>
     </div>
 </footer>
 
 <!-- ── DOWNLOAD MODAL ── -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal">
-        <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
-            <i data-lucide="x"></i>
-        </button>
-
-        <div class="modal-icon">
-            <i data-lucide="chef-hat"></i>
-        </div>
 
         <p class="modal-recipe-name" id="modalRecipeName">Pantry Chef</p>
 
@@ -1056,8 +1111,6 @@
         </div>
 
         <h2>¡Descarga la app para cocinar!</h2>
-        <p>Los pasos detallados y el temporizador están disponibles en la app gratuita de Pantry Chef.</p>
-
         <div class="modal-features">
             <div class="modal-feature-item">
                 <i data-lucide="list-ordered"></i>
@@ -1065,11 +1118,11 @@
             </div>
             <div class="modal-feature-item">
                 <i data-lucide="timer"></i>
-                Temporizador inteligente por paso
+                Temporizador inteligente
             </div>
             <div class="modal-feature-item">
                 <i data-lucide="sparkles"></i>
-                +500 recetas personalizadas con IA
+                +500 recetas personalizadas
             </div>
             <div class="modal-feature-item">
                 <i data-lucide="leaf"></i>
@@ -1078,92 +1131,748 @@
         </div>
 
         <div class="modal-btns">
-            <button class="store-btn-modal apple">
+            <a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener" class="store-btn-modal apple">
                 <i data-lucide="apple"></i> Descargar en App Store
-            </button>
-            <button class="store-btn-modal google">
+            </a>
+            <a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener" class="store-btn-modal google">
                 <i data-lucide="play"></i> Descargar en Google Play
-            </button>
+            </a>
         </div>
     </div>
 </div>
 
 <!-- ── JAVASCRIPT ── -->
 <script>
+// ── RECIPE DATABASE ──────────────────────────────
+// mainIngredients  → los protagonistas que definen el plato
+// supportIngredients → extras que enriquecen pero no son imprescindibles
 const RECIPES = [
+
+    // ═══ TOMATE ═══════════════════════════════════════
     {
-        id: 'pasta-setas',
-        title: 'Pasta con Setas y Salvia',
-        image: 'recipe-pasta-setas.png',
-        time: '20 min',
-        difficulty: 'Fácil',
-        serves: 2,
-        tags: ['Vegetariano', 'Bajo en calorías'],
-        requiredIngredients: ['pasta', 'tomate', 'cebolla', 'ajo', 'queso'],
+        id: 'salmorejo',
+        title: 'Salmorejo cordobés',
+        image: 'salmorejo-cordobes.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 4,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['tomate'],
+        supportIngredients: ['ajo', 'pan'],
         steps: [
-            { num: 1, text: 'Cocer la pasta en agua con sal hasta que esté al dente, aprox. 10 min.', timer: '10:00' },
-            { num: 2, text: 'Saltear las setas con la salvia en aceite de oliva a fuego medio.', timer: '05:00' },
-            { num: 3, text: 'Mezclar la pasta con las setas y servir con queso rallado.', timer: '02:00' },
+            { num: 1, text: 'Tritura los tomates maduros con el pan remojado, el ajo y el aceite de oliva hasta obtener una crema fina.', timer: '05:00' },
+            { num: 2, text: 'Pasa la mezcla por un colador fino, ajusta de sal y añade un chorrito de vinagre de Jerez.', timer: '03:00' },
+            { num: 3, text: 'Enfría al menos 30 min en nevera y sirve con huevo duro rallado y unas gotas de aceite.', timer: '30:00' },
         ]
     },
     {
-        id: 'vegan-bowl',
-        title: 'Vegan Bowl',
-        image: 'recipe-vegan-bowl.png',
-        time: '15 min',
-        difficulty: 'Fácil',
-        serves: 1,
-        tags: ['Vegano', 'Sin gluten'],
-        requiredIngredients: ['aguacate', 'espinacas', 'tomate', 'lentejas', 'limon', 'arroz', 'pimiento'],
+        id: 'caprese',
+        title: 'Ensalada caprese',
+        image: 'ensalada-caprese.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['tomate', 'queso'],
+        supportIngredients: [],
         steps: [
-            { num: 1, text: 'Preparar la base de arroz o quinoa cocido templado.', timer: '12:00' },
-            { num: 2, text: 'Colocar el aguacate en láminas, tomate cherry y espinacas frescas.', timer: '03:00' },
-            { num: 3, text: 'Aliñar con limón, aceite y tahini. ¡Listo!', timer: '01:00' },
+            { num: 1, text: 'Corta el tomate y la mozzarella en rodajas del mismo grosor.', timer: '05:00' },
+            { num: 2, text: 'Alterna las rodajas en un plato y añade hojas de albahaca fresca.', timer: '02:00' },
+            { num: 3, text: 'Aliña con aceite de oliva virgen extra, sal en escamas y pimienta negra recién molida.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'pan-tomate',
+        title: 'Pan con tomate',
+        image: 'pan-con-tomate.png',
+        time: '5 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegano', 'Desayuno'],
+        mainIngredients: ['pan', 'tomate'],
+        supportIngredients: ['ajo'],
+        steps: [
+            { num: 1, text: 'Tuesta el pan hasta que esté dorado y crujiente por ambas caras.', timer: '03:00' },
+            { num: 2, text: 'Frota medio diente de ajo por la superficie del pan tostado.', timer: '01:00' },
+            { num: 3, text: 'Parte el tomate por la mitad y restriégalo sobre el pan. Añade sal y aceite de oliva.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'huevos-tomate',
+        title: 'Huevos con tomate',
+        image: 'huevos-con-tomate.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Alto en proteínas'],
+        mainIngredients: ['huevos', 'tomate'],
+        supportIngredients: ['cebolla', 'ajo', 'pimiento'],
+        steps: [
+            { num: 1, text: 'Sofríe la cebolla y el tomate picado en aceite durante 8 min a fuego medio.', timer: '08:00' },
+            { num: 2, text: 'Casca los huevos sobre el sofrito y cocina a fuego medio con la sartén tapada.', timer: '05:00' },
+            { num: 3, text: 'Sazona con sal y pimienta. Sirve con pan tostado para mojar.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'pollo-tomate',
+        title: 'Pollo al tomate',
+        image: 'pollo-al-tomate.png',
+        time: '35 min',
+        difficulty: 'Media',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo', 'tomate'],
+        supportIngredients: ['cebolla', 'ajo', 'pimiento'],
+        steps: [
+            { num: 1, text: 'Dora los trozos de pollo salpimentados en aceite caliente hasta que estén dorados.', timer: '08:00' },
+            { num: 2, text: 'Añade el tomate troceado, la cebolla y el ajo. Rehoga bien durante 5 min.', timer: '05:00' },
+            { num: 3, text: 'Tapa la cazuela y cocina a fuego bajo 20 min hasta que el pollo esté tierno.', timer: '20:00' },
+        ]
+    },
+    {
+        id: 'pasta-pomodoro',
+        title: 'Pasta al pomodoro',
+        image: 'pasta-al-pomodoro.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pasta', 'tomate'],
+        supportIngredients: ['ajo', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua abundante con sal según las instrucciones del paquete.', timer: '10:00' },
+            { num: 2, text: 'Sofríe el ajo en aceite, añade el tomate triturado y cocina 10 min a fuego medio.', timer: '10:00' },
+            { num: 3, text: 'Mezcla la pasta escurrida con la salsa y sirve con albahaca fresca y un chorrito de aceite.', timer: '02:00' },
+        ]
+    },
+    {
+        id: 'arroz-tomate',
+        title: 'Arroz con tomate',
+        image: 'arroz-con-tomate.png',
+        time: '25 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['arroz', 'tomate'],
+        supportIngredients: ['cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Sofríe la cebolla y el ajo picados en aceite hasta que estén pochados.', timer: '05:00' },
+            { num: 2, text: 'Añade el tomate triturado y el arroz. Remueve bien para nacarar.', timer: '03:00' },
+            { num: 3, text: 'Cubre con el doble de agua o caldo vegetal y cocina a fuego lento tapado.', timer: '18:00' },
+        ]
+    },
+    {
+        id: 'pisto',
+        title: 'Pisto manchego',
+        image: 'pisto-manchego.png',
+        time: '30 min',
+        difficulty: 'Fácil',
+        serves: 3,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['pimiento', 'tomate', 'cebolla'],
+        supportIngredients: ['ajo', 'huevos'],
+        steps: [
+            { num: 1, text: 'Sofríe la cebolla y el pimiento en tiras en aceite a fuego medio durante 10 min.', timer: '10:00' },
+            { num: 2, text: 'Añade el tomate troceado y el ajo. Cocina destapado removiendo de vez en cuando.', timer: '15:00' },
+            { num: 3, text: 'Sazona con sal y azúcar. Sirve con huevos fritos por encima si lo deseas.', timer: '05:00' },
+        ]
+    },
+
+    // ═══ AGUACATE ═══════════════════════════════════════
+    {
+        id: 'guacamole',
+        title: 'Guacamole casero',
+        image: 'guacamole-casero.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 4,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['aguacate'],
+        supportIngredients: ['tomate', 'cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Aplasta los aguacates maduros con un tenedor en un bol grande.', timer: '03:00' },
+            { num: 2, text: 'Añade el tomate picado, la cebolla y el zumo de medio limón. Mezcla bien.', timer: '03:00' },
+            { num: 3, text: 'Sazona con sal, pimienta y cilantro fresco. Sirve inmediatamente con nachos.', timer: '01:00' },
         ]
     },
     {
         id: 'tostada-aguacate',
-        title: 'Tostada de Aguacate',
-        image: 'recipe-vegan-bowl.png',
+        title: 'Tostada de aguacate',
+        image: 'tostada-de-aguacate.png',
         time: '10 min',
         difficulty: 'Muy fácil',
         serves: 1,
-        tags: ['Vegano', 'Desayuno'],
-        requiredIngredients: ['aguacate', 'pan', 'tomate', 'limon', 'huevos'],
+        tags: ['Vegetariano', 'Desayuno'],
+        mainIngredients: ['aguacate', 'pan'],
+        supportIngredients: ['tomate', 'huevos'],
         steps: [
-            { num: 1, text: 'Tostar el pan hasta que esté dorado y crujiente.', timer: '03:00' },
-            { num: 2, text: 'Aplastar el aguacate con limón, sal y pimienta.', timer: '02:00' },
-            { num: 3, text: 'Extender sobre el pan y añadir tomate en rodajas.', timer: '01:00' },
+            { num: 1, text: 'Tuesta el pan hasta que esté dorado y crujiente.', timer: '03:00' },
+            { num: 2, text: 'Aplasta el aguacate con zumo de limón, sal y pimienta y extiéndelo generosamente.', timer: '02:00' },
+            { num: 3, text: 'Añade tomate en rodajas, semillas de sésamo y un chorrito de aceite de oliva.', timer: '01:00' },
         ]
     },
     {
-        id: 'revuelto-huevos',
-        title: 'Revuelto con Verduras',
-        image: 'recipe-pasta-setas.png',
+        id: 'ensalada-aguacate-tomate',
+        title: 'Ensalada de aguacate y tomate',
+        image: 'ensalada-de-aguacate-y-tomate.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['aguacate', 'tomate'],
+        supportIngredients: ['cebolla'],
+        steps: [
+            { num: 1, text: 'Corta el aguacate y el tomate en dados uniformes del mismo tamaño.', timer: '04:00' },
+            { num: 2, text: 'Añade cebolla morada picada muy fina y mezcla suavemente.', timer: '02:00' },
+            { num: 3, text: 'Aliña con zumo de limón, aceite de oliva, sal y cilantro fresco.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'aguacate-huevo',
+        title: 'Aguacate con huevo al horno',
+        image: 'aguacate-con-huevo-al-horno.png',
+        time: '22 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['aguacate', 'huevos'],
+        supportIngredients: ['tomate'],
+        steps: [
+            { num: 1, text: 'Parte el aguacate por la mitad, retira el hueso y amplía el hueco con una cuchara.', timer: '02:00' },
+            { num: 2, text: 'Casca un huevo dentro de cada mitad, salpimenta y añade unas gotas de salsa picante.', timer: '02:00' },
+            { num: 3, text: 'Hornea a 200°C durante 15-18 min hasta que el huevo esté cuajado pero cremoso.', timer: '18:00' },
+        ]
+    },
+    {
+        id: 'aguacate-espinacas',
+        title: 'Bowl de aguacate y espinacas',
+        image: 'bowl-de-aguacate-y-espinacas.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['aguacate', 'espinacas'],
+        supportIngredients: ['tomate', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Lava y seca bien las espinacas frescas. Colócalas como base en el bol.', timer: '02:00' },
+            { num: 2, text: 'Añade el aguacate en láminas y tomate cherry cortado por la mitad.', timer: '03:00' },
+            { num: 3, text: 'Aliña con limón, aceite de oliva, sal y pipas de girasol tostadas.', timer: '02:00' },
+        ]
+    },
+
+    // ═══ ESPINACAS ═══════════════════════════════════════
+    {
+        id: 'espinacas-ajillo',
+        title: 'Espinacas al ajillo',
+        image: 'espinacas-al-ajillo.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['espinacas', 'ajo'],
+        supportIngredients: ['cebolla'],
+        steps: [
+            { num: 1, text: 'Fríe los ajos laminados en aceite de oliva hasta que estén ligeramente dorados.', timer: '03:00' },
+            { num: 2, text: 'Añade las espinacas lavadas en tandas y rehoga hasta que se reduzcan por completo.', timer: '05:00' },
+            { num: 3, text: 'Sazona con sal, pimienta, unas gotitas de limón y una pizca de nuez moscada.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'revuelto-espinacas',
+        title: 'Revuelto de espinacas y Huevo',
+        image: 'revuelto-de-espinacas-y-huevo.png',
         time: '12 min',
         difficulty: 'Muy fácil',
         serves: 2,
         tags: ['Vegetariano', 'Alto en proteínas'],
-        requiredIngredients: ['huevos', 'pimiento', 'cebolla', 'espinacas', 'tomate', 'queso'],
+        mainIngredients: ['espinacas', 'huevos'],
+        supportIngredients: ['ajo', 'queso', 'cebolla'],
         steps: [
-            { num: 1, text: 'Pochar la cebolla y el pimiento en aceite durante 5 min.', timer: '05:00' },
-            { num: 2, text: 'Añadir los huevos batidos y remover suavemente a fuego bajo.', timer: '04:00' },
-            { num: 3, text: 'Incorporar espinacas y servir con tostada.', timer: '02:00' },
+            { num: 1, text: 'Saltea las espinacas con ajo laminado en aceite de oliva durante 3 min.', timer: '03:00' },
+            { num: 2, text: 'Bate los huevos con una pizca de sal y viértelos sobre las espinacas.', timer: '02:00' },
+            { num: 3, text: 'Remueve suavemente a fuego bajo hasta que cuaje. Añade queso rallado y sirve.', timer: '05:00' },
+        ]
+    },
+    {
+        id: 'crema-espinacas',
+        title: 'Crema de espinacas',
+        image: 'crema-de-espinacas.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 3,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['espinacas'],
+        supportIngredients: ['cebolla', 'ajo', 'queso'],
+        steps: [
+            { num: 1, text: 'Pocha la cebolla y el ajo en un poco de aceite de oliva hasta que estén blandos.', timer: '05:00' },
+            { num: 2, text: 'Añade las espinacas y el caldo vegetal caliente. Lleva a ebullición 10 min.', timer: '10:00' },
+            { num: 3, text: 'Tritura bien hasta obtener una crema fina. Corrige de sal y sirve con queso rallado.', timer: '03:00' },
+        ]
+    },
+    {
+        id: 'pasta-espinacas-queso',
+        title: 'Pasta con espinacas y queso',
+        image: 'pasta-con-espinacas-y-queso.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pasta', 'espinacas', 'queso'],
+        supportIngredients: ['ajo'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua con sal. Reserva un vaso del agua de cocción antes de escurrir.', timer: '10:00' },
+            { num: 2, text: 'Saltea las espinacas con ajo en aceite y añade la pasta escurrida.', timer: '05:00' },
+            { num: 3, text: 'Añade queso rallado y el agua de cocción reservada. Mezcla hasta emulsionar.', timer: '03:00' },
+        ]
+    },
+    {
+        id: 'espinacas-arroz',
+        title: 'Arroz con espinacas',
+        image: 'arroz-con-espinacas.png',
+        time: '25 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['arroz', 'espinacas'],
+        supportIngredients: ['ajo', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Sofríe la cebolla y el ajo en aceite hasta que estén pochados.', timer: '05:00' },
+            { num: 2, text: 'Añade el arroz, tuesta 2 min y vierte el caldo caliente. Cocina 15 min.', timer: '17:00' },
+            { num: 3, text: 'Incorpora las espinacas los últimos 3 min y mezcla hasta que se integren.', timer: '03:00' },
+        ]
+    },
+
+    // ═══ CEBOLLA ═══════════════════════════════════════
+    {
+        id: 'sopa-cebolla',
+        title: 'Sopa de cebolla gratinada',
+        image: 'sopa-de-cebolla-gratinada.png',
+        time: '40 min',
+        difficulty: 'Fácil',
+        serves: 3,
+        tags: ['Vegetariano'],
+        mainIngredients: ['cebolla'],
+        supportIngredients: ['pan', 'queso', 'ajo'],
+        steps: [
+            { num: 1, text: 'Carameliza 4 cebollas en rodajas a fuego muy lento en mantequilla durante 25 min.', timer: '25:00' },
+            { num: 2, text: 'Añade caldo de verduras, remueve y lleva a ebullición suave. Cocina 10 min.', timer: '10:00' },
+            { num: 3, text: 'Sirve con rebanadas de pan tostado y queso gratinado bajo el grill.', timer: '05:00' },
+        ]
+    },
+    {
+        id: 'tortilla-cebolla',
+        title: 'Tortilla con cebolla',
+        image: 'tortilla-con-cebolla.png',
+        time: '25 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['huevos', 'cebolla'],
+        supportIngredients: ['queso', 'pimiento'],
+        steps: [
+            { num: 1, text: 'Pocha la cebolla en rodajas finas a fuego muy bajo con aceite hasta que esté dulce y translúcida.', timer: '15:00' },
+            { num: 2, text: 'Bate los huevos con sal y mezcla con la cebolla pochada escurrida.', timer: '03:00' },
+            { num: 3, text: 'Cuaja a fuego medio-bajo, dando la vuelta a mitad de cocción con un plato.', timer: '07:00' },
+        ]
+    },
+    {
+        id: 'cebolla-pollo',
+        title: 'Pollo encebollado',
+        image: 'pollo-encebollado.png',
+        time: '35 min',
+        difficulty: 'Media',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo', 'cebolla'],
+        supportIngredients: ['ajo', 'tomate', 'pimiento'],
+        steps: [
+            { num: 1, text: 'Dora el pollo en aceite caliente con sal y pimienta hasta que esté sellado.', timer: '08:00' },
+            { num: 2, text: 'Retira el pollo y en el mismo aceite pocha la cebolla en juliana a fuego bajo.', timer: '15:00' },
+            { num: 3, text: 'Vuelve a poner el pollo, añade vino blanco y cocina tapado hasta que esté tierno.', timer: '12:00' },
+        ]
+    },
+
+    // ═══ AJO ═══════════════════════════════════════
+    {
+        id: 'sopa-ajo',
+        title: 'Sopa de ajo castellana',
+        image: 'sopa-de-ajo-castellana.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano'],
+        mainIngredients: ['ajo', 'pan'],
+        supportIngredients: ['huevos'],
+        steps: [
+            { num: 1, text: 'Fríe los ajos laminados y los trozos de pan duro en aceite hasta que estén dorados.', timer: '05:00' },
+            { num: 2, text: 'Añade el caldo caliente, pimentón dulce y sal. Cocina 10 min a fuego suave.', timer: '10:00' },
+            { num: 3, text: 'Casca un huevo en la sopa, tapa y cuaja 3 min. Sirve bien caliente.', timer: '05:00' },
+        ]
+    },
+    {
+        id: 'pan-ajo',
+        title: 'Pan de ajo casero',
+        image: 'pan-de-ajo-casero.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 4,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pan', 'ajo'],
+        supportIngredients: ['queso'],
+        steps: [
+            { num: 1, text: 'Mezcla mantequilla ablandada con ajo muy picado, sal y perejil fresco.', timer: '03:00' },
+            { num: 2, text: 'Unta la mezcla generosamente sobre el pan cortado en rebanadas gruesas.', timer: '03:00' },
+            { num: 3, text: 'Hornea a 200°C durante 10 min hasta que esté dorado y crujiente.', timer: '10:00' },
+        ]
+    },
+    {
+        id: 'pasta-aglio',
+        title: 'Pasta aglio e olio',
+        image: 'pasta-aglio-e-olio.png',
+        time: '15 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegano'],
+        mainIngredients: ['pasta', 'ajo'],
+        supportIngredients: ['queso'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua con sal hasta que esté al dente. Reserva el agua.', timer: '10:00' },
+            { num: 2, text: 'Dora el ajo laminado con guindilla en aceite de oliva generoso a fuego bajo.', timer: '04:00' },
+            { num: 3, text: 'Mezcla la pasta con el aceite de ajo y un poco del agua de cocción. Sirve con parmesano.', timer: '02:00' },
+        ]
+    },
+    {
+        id: 'pollo-ajillo',
+        title: 'Pollo al ajillo',
+        image: 'pollo-al-ajillo.png',
+        time: '30 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo', 'ajo'],
+        supportIngredients: ['tomate', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Dora los trozos de pollo en aceite bien caliente por todos los lados con sal.', timer: '10:00' },
+            { num: 2, text: 'Añade el ajo en láminas y el vino blanco. Deja evaporar el alcohol.', timer: '05:00' },
+            { num: 3, text: 'Cocina tapado a fuego bajo 15 min hasta que el pollo esté jugoso y la salsa reducida.', timer: '15:00' },
+        ]
+    },
+
+    // ═══ PIMIENTO ═══════════════════════════════════════
+    {
+        id: 'pimientos-asados',
+        title: 'Pimientos asados al horno',
+        image: 'pimientos-asados-al-horno.png',
+        time: '40 min',
+        difficulty: 'Muy fácil',
+        serves: 4,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['pimiento'],
+        supportIngredients: ['ajo', 'tomate'],
+        steps: [
+            { num: 1, text: 'Coloca los pimientos enteros en una bandeja con aceite de oliva y sal.', timer: '02:00' },
+            { num: 2, text: 'Hornea a 200°C durante 35 min girando a mitad de cocción.', timer: '35:00' },
+            { num: 3, text: 'Pela mientras están calientes, corta en tiras y aliña con ajo, vinagre y aceite.', timer: '05:00' },
+        ]
+    },
+    {
+        id: 'revuelto-pimiento',
+        title: 'Revuelto de pimientos',
+        image: 'revuelto-de-pimientos.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['pimiento', 'huevos'],
+        supportIngredients: ['cebolla', 'ajo', 'tomate'],
+        steps: [
+            { num: 1, text: 'Sofríe el pimiento en tiras y la cebolla en aceite hasta que se ablanden bien.', timer: '08:00' },
+            { num: 2, text: 'Bate los huevos con sal y viértelos sobre las verduras.', timer: '02:00' },
+            { num: 3, text: 'Remueve suavemente a fuego bajo hasta que cuaje. Sirve caliente.', timer: '03:00' },
+        ]
+    },
+    {
+        id: 'pollo-pimientos',
+        title: 'Pollo con pimientos al horno',
+        image: 'pollo-con-pimientos-al-horno.png',
+        time: '45 min',
+        difficulty: 'Media',
+        serves: 3,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo', 'pimiento'],
+        supportIngredients: ['cebolla', 'ajo', 'tomate'],
+        steps: [
+            { num: 1, text: 'Dora el pollo troceado en aceite con sal, pimentón y orégano.', timer: '08:00' },
+            { num: 2, text: 'Añade los pimientos en tiras, la cebolla en medias lunas y el ajo. Remueve bien.', timer: '05:00' },
+            { num: 3, text: 'Hornea todo junto a 180°C hasta que el pollo esté hecho por dentro.', timer: '30:00' },
+        ]
+    },
+    {
+        id: 'arroz-pimientos',
+        title: 'Arroz salteado con pimientos',
+        image: 'arroz-salteado-con-pimientos.png',
+        time: '25 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['arroz', 'pimiento'],
+        supportIngredients: ['cebolla', 'ajo', 'tomate'],
+        steps: [
+            { num: 1, text: 'Cuece el arroz en agua con sal hasta que esté en su punto. Escurre y reserva.', timer: '18:00' },
+            { num: 2, text: 'Saltea los pimientos en tiras con cebolla y ajo en aceite a fuego fuerte.', timer: '08:00' },
+            { num: 3, text: 'Mezcla el arroz con las verduras y sazona con sal, pimienta y hierbas al gusto.', timer: '02:00' },
+        ]
+    },
+
+    // ═══ HUEVOS ═══════════════════════════════════════
+    {
+        id: 'tortilla-francesa',
+        title: 'Tortilla francesa',
+        image: 'tortilla-francesa.png',
+        time: '8 min',
+        difficulty: 'Muy fácil',
+        serves: 1,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['huevos'],
+        supportIngredients: ['queso', 'tomate'],
+        steps: [
+            { num: 1, text: 'Bate 2-3 huevos con sal y pimienta. Puedes añadir queso rallado o hierbas.', timer: '02:00' },
+            { num: 2, text: 'Calienta un poco de aceite en sartén y vierte los huevos. Mueve suavemente con espátula.', timer: '03:00' },
+            { num: 3, text: 'Dobla la tortilla a la mitad cuando esté casi cuajada pero aún cremosa por dentro. Sirve.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'huevos-rotos',
+        title: 'Huevos rotos',
+        image: 'huevos-rotos.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 1,
+        tags: ['Vegetariano', 'Alto en proteínas'],
+        mainIngredients: ['huevos'],
+        supportIngredients: ['pan'],
+        steps: [
+            { num: 1, text: 'Bate los huevos con una pizca de sal y un chorrito de leche.', timer: '02:00' },
+            { num: 2, text: 'Cocina a fuego muy bajo, removiendo constantemente con espátula de silicona.', timer: '05:00' },
+            { num: 3, text: 'Retira del fuego antes de que cuaje del todo, añade el queso y sirve sobre tostada.', timer: '01:00' },
+        ]
+    },
+    {
+        id: 'arroz-huevo',
+        title: 'Arroz frito con huevo',
+        image: 'arroz-frito-con-huevo.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['arroz', 'huevos'],
+        supportIngredients: ['pimiento', 'cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Cuece el arroz y deja reposar al menos 10 min para que se seque bien.', timer: '18:00' },
+            { num: 2, text: 'Saltea las verduras en sartén o wok a fuego alto con aceite de sésamo.', timer: '04:00' },
+            { num: 3, text: 'Añade el arroz y los huevos batidos. Mezcla rápidamente a fuego máximo.', timer: '04:00' },
+        ]
+    },
+    {
+        id: 'french-toast',
+        title: 'French toast con canela',
+        image: 'french-toast-con-canela.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegetariano', 'Desayuno'],
+        mainIngredients: ['pan', 'huevos'],
+        supportIngredients: ['queso'],
+        steps: [
+            { num: 1, text: 'Mezcla los huevos con leche, canela y una cucharada de azúcar en un bol ancho.', timer: '03:00' },
+            { num: 2, text: 'Empapa las rebanadas de pan en la mezcla hasta que absorban bien por ambos lados.', timer: '03:00' },
+            { num: 3, text: 'Dora en mantequilla caliente hasta que estén doradas y crujientes por ambos lados.', timer: '06:00' },
+        ]
+    },
+
+    // ═══ POLLO ═══════════════════════════════════════
+    {
+        id: 'pollo-plancha',
+        title: 'Pollo a la plancha con limón',
+        image: 'pollo-a-la-plancha-con-limon.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo'],
+        supportIngredients: ['ajo', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Marina las pechugas con zumo de limón, ajo picado, orégano y aceite durante 10 min.', timer: '10:00' },
+            { num: 2, text: 'Cocina en plancha bien caliente 6-7 min por cada lado sin mover demasiado.', timer: '14:00' },
+            { num: 3, text: 'Deja reposar 2 min antes de servir para que los jugos se redistribuyan.', timer: '02:00' },
         ]
     },
     {
         id: 'arroz-pollo',
-        title: 'Arroz con Pollo al Limón',
-        image: 'recipe-pasta-setas.png',
+        title: 'Arroz con pollo',
+        image: 'arroz-con-pollo.png',
         time: '30 min',
         difficulty: 'Media',
         serves: 2,
         tags: ['Sin gluten', 'Alto en proteínas'],
-        requiredIngredients: ['pollo', 'arroz', 'limon', 'ajo', 'cebolla', 'pimiento'],
+        mainIngredients: ['pollo', 'arroz'],
+        supportIngredients: ['ajo', 'cebolla', 'pimiento', 'tomate'],
         steps: [
-            { num: 1, text: 'Dorar el pollo en trozos con ajo y cebolla.', timer: '08:00' },
-            { num: 2, text: 'Añadir el arroz, caldo y zumo de limón. Cocer tapado.', timer: '18:00' },
-            { num: 3, text: 'Reposar 5 min y servir con perejil fresco.', timer: '05:00' },
+            { num: 1, text: 'Dora el pollo troceado con ajo y cebolla en aceite hasta que esté sellado.', timer: '08:00' },
+            { num: 2, text: 'Añade el arroz, remueve 2 min y vierte el caldo caliente con azafrán.', timer: '05:00' },
+            { num: 3, text: 'Cocina tapado a fuego bajo 18 min. Deja reposar 5 min y sirve.', timer: '18:00' },
+        ]
+    },
+    {
+        id: 'pasta-pollo',
+        title: 'Pasta con pollo y verduras',
+        image: 'pasta-con-pollo-y-verduras.png',
+        time: '25 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Alto en proteínas'],
+        mainIngredients: ['pasta', 'pollo'],
+        supportIngredients: ['tomate', 'pimiento', 'cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua con sal hasta que esté al dente. Reserva.', timer: '10:00' },
+            { num: 2, text: 'Saltea el pollo en tiras con ajo, cebolla y pimiento en aceite a fuego medio-alto.', timer: '10:00' },
+            { num: 3, text: 'Mezcla la pasta con el pollo y el tomate troceado. Sazona y sirve.', timer: '03:00' },
+        ]
+    },
+    {
+        id: 'pollo-queso',
+        title: 'Pollo gratinado con queso',
+        image: 'pollo-gratinado-con-queso.png',
+        time: '30 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Sin gluten', 'Alto en proteínas'],
+        mainIngredients: ['pollo', 'queso'],
+        supportIngredients: ['tomate', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Sazona las pechugas y dóralas en sartén con aceite por ambos lados.', timer: '08:00' },
+            { num: 2, text: 'Coloca el pollo en una bandeja y cúbrelo generosamente con queso rallado.', timer: '02:00' },
+            { num: 3, text: 'Gratina a 220°C hasta que el queso esté fundido, dorado y burbujeante.', timer: '10:00' },
+        ]
+    },
+
+    // ═══ PAN ═══════════════════════════════════════
+    {
+        id: 'sandwich-queso',
+        title: 'Sandwich crujiente de queso',
+        image: 'sanwich-crujiente-de-queso.png',
+        time: '10 min',
+        difficulty: 'Muy fácil',
+        serves: 1,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pan', 'queso'],
+        supportIngredients: ['tomate', 'huevos'],
+        steps: [
+            { num: 1, text: 'Coloca láminas generosas de queso entre dos rebanadas de pan de molde.', timer: '01:00' },
+            { num: 2, text: 'Unta mantequilla por las caras exteriores del pan con generosidad.', timer: '01:00' },
+            { num: 3, text: 'Dora en sartén caliente 3-4 min por cada lado hasta que el queso esté fundido.', timer: '08:00' },
+        ]
+    },
+
+    // ═══ QUESO ═══════════════════════════════════════
+    {
+        id: 'pasta-queso',
+        title: 'Macarrones con queso',
+        image: 'macarrones-con-queso.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pasta', 'queso'],
+        supportIngredients: ['cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua con sal hasta que esté al dente. Reserva el agua.', timer: '10:00' },
+            { num: 2, text: 'Prepara una bechamel ligera con mantequilla, harina y leche. Añade el queso rallado.', timer: '07:00' },
+            { num: 3, text: 'Mezcla la pasta con la salsa de queso y gratina 5 min en el horno si lo deseas.', timer: '05:00' },
+        ]
+    },
+    {
+        id: 'risotto-queso',
+        title: 'Risotto de queso',
+        image: 'risotto-de-queso.png',
+        time: '30 min',
+        difficulty: 'Media',
+        serves: 2,
+        tags: ['Vegetariano', 'Sin gluten'],
+        mainIngredients: ['arroz', 'queso'],
+        supportIngredients: ['cebolla', 'ajo'],
+        steps: [
+            { num: 1, text: 'Sofríe la cebolla en mantequilla, añade el arroz arborio y tuesta 2 min.', timer: '05:00' },
+            { num: 2, text: 'Añade caldo caliente cazo a cazo, removiendo constantemente entre cada uno.', timer: '20:00' },
+            { num: 3, text: 'Retira del fuego y añade el queso parmesano rallado y una nuez de mantequilla. Mezcla.', timer: '03:00' },
+        ]
+    },
+
+    // ═══ PASTA ═══════════════════════════════════════
+    {
+        id: 'carbonara',
+        title: 'Espaguetis a la carbonara',
+        image: 'espaguetis-a-la-carbonara.png',
+        time: '20 min',
+        difficulty: 'Media',
+        serves: 2,
+        tags: ['Alto en proteínas'],
+        mainIngredients: ['pasta', 'huevos', 'queso'],
+        supportIngredients: [],
+        steps: [
+            { num: 1, text: 'Cuece los espaguetis hasta que estén al dente. Reserva abundante agua de cocción.', timer: '10:00' },
+            { num: 2, text: 'Bate las yemas con queso parmesano rallado y pimienta negra abundante.', timer: '03:00' },
+            { num: 3, text: 'Mezcla la pasta caliente con la crema fuera del fuego. Añade agua de cocción para ligar.', timer: '04:00' },
+        ]
+    },
+    {
+        id: 'pasta-mantequilla',
+        title: 'Pasta con parmesano',
+        image: 'pasta-con-parmesano.png',
+        time: '15 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegetariano'],
+        mainIngredients: ['pasta'],
+        supportIngredients: ['queso', 'ajo'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua abundante con sal hasta que esté al dente.', timer: '10:00' },
+            { num: 2, text: 'Escurre reservando un vaso del agua de cocción con almidón.', timer: '01:00' },
+            { num: 3, text: 'Mezcla con mantequilla, queso rallado y el agua de cocción. Sirve caliente.', timer: '03:00' },
+        ]
+    },
+    {
+        id: 'pasta-pomodoro-ajo',
+        title: 'Pasta napolitana',
+        image: 'pasta-napolitana.png',
+        time: '20 min',
+        difficulty: 'Fácil',
+        serves: 2,
+        tags: ['Vegano'],
+        mainIngredients: ['pasta', 'tomate', 'ajo'],
+        supportIngredients: ['cebolla'],
+        steps: [
+            { num: 1, text: 'Cuece la pasta en agua con sal. Sofríe el ajo en aceite generoso.', timer: '10:00' },
+            { num: 2, text: 'Añade el tomate triturado al ajo, sazona y cocina 8 min a fuego medio.', timer: '08:00' },
+            { num: 3, text: 'Mezcla la pasta escurrida con la salsa. Sirve con albahaca fresca y aceite.', timer: '02:00' },
+        ]
+    },
+
+    // ═══ ARROZ ═══════════════════════════════════════
+    {
+        id: 'arroz-blanco',
+        title: 'Arroz blanco perfecto',
+        image: 'arroz-blanco-perfecto.png',
+        time: '20 min',
+        difficulty: 'Muy fácil',
+        serves: 2,
+        tags: ['Vegano', 'Sin gluten'],
+        mainIngredients: ['arroz'],
+        supportIngredients: ['ajo', 'cebolla'],
+        steps: [
+            { num: 1, text: 'Lava el arroz bajo el grifo hasta que el agua salga clara, eliminando el almidón.', timer: '03:00' },
+            { num: 2, text: 'Hierve el doble de agua que de arroz con sal y añade el arroz.', timer: '02:00' },
+            { num: 3, text: 'Cocina tapado a fuego mínimo 15 min. Deja reposar 5 min fuera del fuego y sirve.', timer: '20:00' },
         ]
     },
 ];
@@ -1187,21 +1896,33 @@ function updateUI() {
     const count = selected.length;
     const counterNum = document.getElementById('counterNum');
     const counterBadge = document.getElementById('counterBadge');
+    const btn = document.getElementById('btnFindRecipes');
     counterNum.textContent = count;
 
     if (count === 3) {
         counterBadge.classList.add('complete');
-        // Disable non-selected chips
+        // Disable non-selected chips when max reached
         document.querySelectorAll('.ingredient-chip:not(.selected)').forEach(c => c.classList.add('disabled'));
-        showResults();
-        // progress steps
-        setStep(2);
     } else {
         counterBadge.classList.remove('complete');
         document.querySelectorAll('.ingredient-chip').forEach(c => c.classList.remove('disabled'));
+    }
+
+    // Enable/disable search button
+    btn.disabled = count === 0;
+    btn.classList.toggle('ready', count >= 1);
+
+    // If we deselect after results were shown, hide them
+    if (count === 0) {
         hideResults();
         setStep(1);
     }
+}
+
+function findRecipes() {
+    if (selected.length === 0) return;
+    showResults();
+    setStep(2);
 }
 
 function setStep(active) {
@@ -1213,24 +1934,42 @@ function setStep(active) {
     }
 }
 
+// Scoring: prioritises recipes where the SELECTED ingredients are the MAIN ones.
+// mainRatio = what % of the recipe's main ingredients the user has selected.
+// mainMatches must be >= 1 to even be considered.
 function scoreRecipe(recipe) {
-    let score = 0;
-    selected.forEach(ing => {
-        if (recipe.requiredIngredients.includes(ing)) score++;
-    });
-    return score;
+    const main    = recipe.mainIngredients    || [];
+    const support = recipe.supportIngredients || [];
+    const mainMatches   = main.filter(i => selected.includes(i)).length;
+    const supportMatches = support.filter(i => selected.includes(i)).length;
+    const mainRatio = main.length > 0 ? mainMatches / main.length : 0;
+    // Primary sort key: ratio of main ingredients covered (0–1, higher is better)
+    // Secondary: raw number of main matches
+    // Tertiary: support ingredient matches
+    return { mainMatches, mainRatio, supportMatches };
 }
 
 function showResults() {
-    const scored = RECIPES.map(r => ({ ...r, score: scoreRecipe(r) }));
-    scored.sort((a, b) => b.score - a.score || a.time.localeCompare(b.time));
+    const scored = RECIPES
+        .map(r => ({ ...r, _s: scoreRecipe(r) }))
+        // Only include recipes that have at least 1 main ingredient present in selection
+        .filter(r => r._s.mainMatches >= 1)
+        .sort((a, b) => {
+            // 1st: highest ratio of main ingredients covered
+            if (b._s.mainRatio !== a._s.mainRatio) return b._s.mainRatio - a._s.mainRatio;
+            // 2nd: most main-ingredient matches in absolute terms
+            if (b._s.mainMatches !== a._s.mainMatches) return b._s.mainMatches - a._s.mainMatches;
+            // 3rd: most support matches
+            return b._s.supportMatches - a._s.supportMatches;
+        });
     const top2 = scored.slice(0, 2);
 
     const grid = document.getElementById('recipeGrid');
     grid.innerHTML = '';
 
     top2.forEach((recipe, idx) => {
-        const matchedIng = selected.filter(i => recipe.requiredIngredients.includes(i));
+        const allRecipeIng = [...(recipe.mainIngredients || []), ...(recipe.supportIngredients || [])];
+        const matchedIng = selected.filter(i => allRecipeIng.includes(i));
         const matchCount = matchedIng.length;
 
         const card = document.createElement('div');
@@ -1259,10 +1998,6 @@ function showResults() {
                     <i data-lucide="clock-3" style="width:13px;height:13px;color:var(--primary-orange)"></i>
                     ${recipe.time}
                 </div>
-                ${matchCount > 0 ? `<div class="match-pill">
-                    <i data-lucide="sparkles" style="width:12px;height:12px"></i>
-                    ${matchCount} coincidencia${matchCount > 1 ? 's' : ''}
-                </div>` : ''}
             </div>
             <div class="recipe-body">
                 <h3 class="recipe-title">${recipe.title}</h3>
@@ -1282,12 +2017,11 @@ function showResults() {
                 </div>
                 <div class="lock-overlay">
                     <div class="lock-icon"><i data-lucide="lock"></i></div>
-                    <p class="lock-text">Pasos bloqueados</p>
+                    <p class="lock-text">Para poder ver los pasos necesarios de esta receta, descarga la app Pantry Chef</p>
                 </div>
             </div>
             <div class="recipe-cta">
                 <button class="btn-cook" onclick="openModal('${recipe.id}')">
-                    <i data-lucide="smartphone"></i>
                     Cocinar este plato ahora
                 </button>
             </div>
