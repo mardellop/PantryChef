@@ -907,6 +907,29 @@
         .btn-find-recipes.ready:active {
             transform: translateY(-1px);
         }
+        /* --- Animaciones Premium Apple Style --- */
+        .demo-hero h1, .demo-hero p, .demo-hero .badge, .steps-bar {
+            opacity: 0;
+            animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .demo-hero .badge { animation-delay: 0.1s; }
+        .demo-hero h1 { animation-delay: 0.2s; }
+        .demo-hero p { animation-delay: 0.35s; }
+        .steps-bar { animation-delay: 0.45s; }
+
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.96); filter: blur(12px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .ingredient-chip {
+            animation: chipFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes chipFadeUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -914,17 +937,15 @@
 <!-- ── HEADER ── -->
     <header>
         <div class="containerWide container">
-            <a href="#" class="logo">
+            <a href="index.html#inicio" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
             </a>
             <nav>
                 <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Sobre nosotros</a></li>
-                    <li><a href="#valores">Nuestros valores</a></li>
-                    <li><a href="#noticias">Noticias</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#nosotros">Sobre nosotros</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -2090,6 +2111,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
+    
+    // Add stagger to ingredient chips
+    const chips = document.querySelectorAll('.ingredient-chip');
+    chips.forEach((chip, idx) => {
+        chip.style.animationDelay = `${0.3 + (idx * 0.05)}s`;
+    });
 });
 </script>
 </body>
