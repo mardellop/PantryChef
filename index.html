@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -412,40 +411,98 @@
             color: #000;
         }
 
-        /* About Section */
+        /* === About Section — Sticky Scroll (same mechanics as gallery-section) === */
         .about {
-            padding: 50px 0;
             background-color: var(--white);
+            height: 400vh; /* tall scroll canvas */
+            position: relative;
+            padding: 0;
         }
 
-        .about .container {
+        .about-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 5rem;
+            align-items: stretch;
+            overflow: hidden;
         }
 
-        .about-image {
+        /* LEFT — scrolling gallery */
+        .about-gallery-side {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: var(--header-height);
         }
 
-        .about-image img {
-            border-radius: 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        .about-gallery-viewport {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            /* Apple fade mask top+bottom */
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
         }
 
+        .about-gallery-grid {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            padding: 0 1.5rem 0 0;
+            align-items: flex-start;
+        }
+
+        .about-gallery-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            flex: 1;
+            will-change: transform;
+        }
+
+        .about-gallery-col figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .about-gallery-col img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            aspect-ratio: 1 / 1.2;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .about-gallery-col figcaption {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 500;
+        }
+
+        /* Stat pill */
         .stat-pill {
             position: absolute;
-            bottom: 40px;
-            left: 40px;
+            bottom: 2rem;
+            left: 1rem;
             background: var(--white);
-            padding: 1.25rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
             gap: 1rem;
             border: 1px solid var(--border-light);
+            z-index: 10;
         }
 
         .stat-pill i {
@@ -469,6 +526,15 @@
             margin: 0;
         }
 
+        /* RIGHT — pinned text */
+        .about-text-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: calc(var(--header-height) + 2rem) 4rem 2rem 3rem;
+            background-color: var(--white);
+        }
+
         .about-content h4 {
             color: var(--primary-orange);
             background: rgba(230, 81, 0, 0.1);
@@ -483,12 +549,13 @@
 
         .about-content h2 {
             font-size: 48px;
-            line-height: 48px;
+            line-height: 1.05;
             margin-bottom: 32px;
+            color: var(--primary-brown);
         }
 
         .about-content p {
-            font-size: 18px;
+            font-size: 17px;
             line-height: 28px;
             margin-bottom: 20px;
             color: var(--text-main);
@@ -503,6 +570,26 @@
         .highlight {
             color: var(--primary-orange);
             font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            .about {
+                height: auto;
+            }
+            .about-sticky {
+                position: relative;
+                height: auto;
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .about-gallery-side {
+                height: 60vw;
+                min-height: 300px;
+                padding-top: 0;
+            }
+            .about-text-side {
+                padding: 2rem 1.5rem;
+            }
         }
 
         /* Values Section */
@@ -1000,7 +1087,6 @@
             }
 
             .hero .container,
-            .about .container,
             .download,
             .product-feature {
                 grid-template-columns: 1fr;
@@ -1009,15 +1095,13 @@
             }
 
             .hero-content,
-            .about-content,
             .download-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
 
-            .hero-image,
-            .about-image {
+            .hero-image {
                 order: -1;
             }
 
@@ -1169,11 +1253,44 @@
         </section>
 
 
-        <!-- About Section -->
+        <!-- About Section (sticky-scroll, same mechanics as gallery-section) -->
         <section id="nosotros" class="about">
-            <div class="container">
-                <div class="about-image">
-                    <img src="about.png" alt="People cooking together">
+            <div class="about-sticky">
+
+                <!-- LEFT: 3-column reverse-scroll gallery -->
+                <div class="about-gallery-side">
+                    <div class="about-gallery-viewport" id="about-gallery">
+                        <div class="about-gallery-grid">
+                            <!-- col 1: DOWN -->
+                            <div class="about-gallery-col about-col-down">
+                                <figure><img src="arroz-blanco-perfecto.png" alt="Arroz blanco"><figcaption>Arroz blanco perfecto</figcaption></figure>
+                                <figure><img src="bowl-de-aguacate-y-espinacas.png" alt="Bowl aguacate"><figcaption>Bowl de aguacate</figcaption></figure>
+                                <figure><img src="huevos-revueltos-con-queso.png" alt="Huevos revueltos"><figcaption>Huevos revueltos con queso</figcaption></figure>
+                                <figure><img src="espinacas-al-ajillo.png" alt="Espinacas"><figcaption>Espinacas al ajillo</figcaption></figure>
+                                <figure><img src="arroz-con-espinacas.png" alt="Arroz espinacas"><figcaption>Arroz con espinacas</figcaption></figure>
+                                <figure><img src="fench-toast-con-canela.png" alt="French toast"><figcaption>Tostadas francesas</figcaption></figure>
+                            </div>
+                            <!-- col 2: UP -->
+                            <div class="about-gallery-col about-col-up">
+                                <figure><img src="ensalada-caprese.png" alt="Ensalada caprese"><figcaption>Ensalada caprese</figcaption></figure>
+                                <figure><img src="pasta-al-pomodoro.png" alt="Pasta pomodoro"><figcaption>Pasta al pomodoro</figcaption></figure>
+                                <figure><img src="guacamole-casero.png" alt="Guacamole"><figcaption>Guacamole casero</figcaption></figure>
+                                <figure><img src="pan-con-tomate.png" alt="Pan con tomate"><figcaption>Pan con tomate</figcaption></figure>
+                                <figure><img src="pasta-napolitana.png" alt="Pasta napolitana"><figcaption>Pasta napolitana</figcaption></figure>
+                                <figure><img src="ensalada-de-aguacate-y-tomate.png" alt="Ensalada aguacate"><figcaption>Ensalada de aguacate</figcaption></figure>
+                            </div>
+                            <!-- col 3: DOWN -->
+                            <div class="about-gallery-col about-col-down">
+                                <figure><img src="pollo-al-ajillo.png" alt="Pollo ajillo"><figcaption>Pollo al ajillo</figcaption></figure>
+                                <figure><img src="pisto-manchego.png" alt="Pisto manchego"><figcaption>Pisto manchego</figcaption></figure>
+                                <figure><img src="macarrones-con-queso.png" alt="Macarrones"><figcaption>Macarrones con queso</figcaption></figure>
+                                <figure><img src="pan-de-ajo-casero.png" alt="Pan de ajo"><figcaption>Pan de ajo casero</figcaption></figure>
+                                <figure><img src="pollo-al-tomate.png" alt="Pollo tomate"><figcaption>Pollo al tomate</figcaption></figure>
+                                <figure><img src="arroz-con-pollo.png" alt="Arroz pollo"><figcaption>Arroz con pollo</figcaption></figure>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stat pill -->
                     <div class="stat-pill">
                         <i data-lucide="users"></i>
                         <div class="stat-text">
@@ -1183,70 +1300,17 @@
                     </div>
                 </div>
 
-
-                <div class="about-content">
-                    <h2>Tu mejor compañero en la cocina</h2>
-                    <p>Somos <b>Pantry Chef</b>, una aplicación móvil diseñada para que cocinar sea una experiencia sencilla, nutritiva y, sobre todo, sin estrés.</p>
-                    <p>Está pensado <b>para ti</b>, que no tienes tiempo para planificar las comidas de la semana, pero que tampoco quieres renunciar a una alimentación saludable.
-                    </p>
-                    <p>Utilizamos la tecnología para que aproveches todo lo que tienes en casa y que puedas conectarte con <b>la mejor comunidad</b>. Queremos que cocinar deje de ser una tarea pendiente para convertirse en <span class="highlight">algo disfrutable y sostenible</span>.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Inspiración Reverse Scroll Gallery -->
-        <section id="galeria" class="gallery-section">
-          <div class="gallery-sticky-container">
-            <div class="gallery-header">
-                <h2>¿Qué te apetece hoy?</h2>
-                <p>Nuestra comunidad crea maravillas con lo que tiene a mano</p>
-            </div>
-            <div class="gallery-wrapper">
-                <div class="gallery-grid">
-                    <div class="gallery-column col-down">
-                        <figure><img src="arroz-blanco-perfecto.png" alt="Arroz"><figcaption>Arroz blanco perfecto</figcaption></figure>
-                        <figure><img src="arroz-con-espinacas.png" alt="Arroz"><figcaption>Arroz con espinacas</figcaption></figure>
-                        <figure><img src="arroz-con-pollo.png" alt="Arroz"><figcaption>Arroz con pollo</figcaption></figure>
-                        <figure><img src="arroz-con-tomate.png" alt="Arroz"><figcaption>Arroz con tomate</figcaption></figure>
-                        <figure><img src="arroz-frito-con-huevo.png" alt="Arroz"><figcaption>Arroz frito con huevo</figcaption></figure>
-                        <figure><img src="bowl-de-aguacate-y-espinacas.png" alt="Bowl"><figcaption>Bowl de aguacate</figcaption></figure>
-                        <figure><img src="arroz-salteado-con-pimientos.png" alt="Arroz"><figcaption>Arroz con pimientos</figcaption></figure>
-                        <figure><img src="ensalada-de-aguacate-y-tomate.png" alt="Ensalada"><figcaption>Ensalada de aguacate</figcaption></figure>
-                        <figure><img src="espinacas-al-ajillo.png" alt="Espinacas"><figcaption>Espinacas al ajillo</figcaption></figure>
-                        <figure><img src="fench-toast-con-canela.png" alt="Tostadas"><figcaption>Tostadas francesas</figcaption></figure>
-                        <figure><img src="huevos-revueltos-con-queso.png" alt="Huevos"><figcaption>Huevos revueltos</figcaption></figure>
-                    </div>
-                    <div class="gallery-column col-up">
-                        <figure><img src="crema-de-espinacas.png" alt="Crema"><figcaption>Crema de espinacas</figcaption></figure>
-                        <figure><img src="ensalada-caprese.png" alt="Ensalada"><figcaption>Ensalada caprese</figcaption></figure>
-                        <figure><img src="espaguetis-a-la-carbonara.png" alt="Pasta"><figcaption>Espaguetis carbonara</figcaption></figure>
-                        <figure><img src="focaccia_roro_1775301429588.png" alt="Focaccia"><figcaption>Focaccia casera</figcaption></figure>
-                        <figure><img src="glowup_bowl_boukie_1775309391928.png" alt="Bowl"><figcaption>Glowup bowl</figcaption></figure>
-                        <figure><img src="guacamole-casero.png" alt="Guacamole"><figcaption>Guacamole casero</figcaption></figure>
-                        <figure><img src="pan-con-tomate.png" alt="Pan"><figcaption>Pan con tomate</figcaption></figure>
-                        <figure><img src="pasta-al-pomodoro.png" alt="Pasta"><figcaption>Pasta al pomodoro</figcaption></figure>
-                        <figure><img src="pasta-con-espinacas-y-queso.png" alt="Pasta"><figcaption>Pasta con espinacas</figcaption></figure>
-                        <figure><img src="pasta-con-parmesano.png" alt="Pasta"><figcaption>Pasta con parmesano</figcaption></figure>
-                        <figure><img src="pasta-con-pollo-y-verduras.png" alt="Pasta"><figcaption>Pasta con pollo</figcaption></figure>
-                        <figure><img src="pasta-napolitana.png" alt="Pasta"><figcaption>Pasta napolitana</figcaption></figure>
-                    </div>
-                    <div class="gallery-column col-down">
-                        <figure><img src="huevos-con-tomate.png" alt="Huevos"><figcaption>Huevos con tomate</figcaption></figure>
-                        <figure><img src="huevos-rotos.png" alt="Huevos"><figcaption>Huevos rotos</figcaption></figure>
-                        <figure><img src="macarrones-con-queso.png" alt="Macarrones"><figcaption>Macarrones con queso</figcaption></figure>
-                        <figure><img src="pan-de-ajo-casero.png" alt="Pan"><figcaption>Pan de ajo casero</figcaption></figure>
-                        <figure><img src="pasta-aglio-e-olio.png" alt="Pasta"><figcaption>Pasta aglio e olio</figcaption></figure>
-                        <figure><img src="pollo-al-ajillo.png" alt="Pollo"><figcaption>Pollo al ajillo</figcaption></figure>
-                        <figure><img src="pimientos-asados-al-horno.png" alt="Pimientos"><figcaption>Pimientos asados</figcaption></figure>
-                        <figure><img src="pisto-manchego.png" alt="Pisto"><figcaption>Pisto manchego</figcaption></figure>
-                        <figure><img src="pollo-a-la-plancha-con-limon.png" alt="Pollo"><figcaption>Pollo al limón</figcaption></figure>
-                        <figure><img src="pollo-al-tomate.png" alt="Pollo"><figcaption>Pollo al tomate</figcaption></figure>
-                        <figure><img src="pollo-con-pimientos-al-horno.png" alt="Pollo"><figcaption>Pollo con pimientos</figcaption></figure>
-                        <figure><img src="pollo-encebollado.png" alt="Pollo"><figcaption>Pollo encebollado</figcaption></figure>
+                <!-- RIGHT: pinned about text -->
+                <div class="about-text-side">
+                    <div class="about-content">
+                        <h2>Tu mejor compañero en la cocina</h2>
+                        <p>Somos <b>Pantry Chef</b>, una aplicación móvil diseñada para que cocinar sea una experiencia sencilla, nutritiva y, sobre todo, sin estrés.</p>
+                        <p>Está pensado <b>para ti</b>, que no tienes tiempo para planificar las comidas de la semana, pero que tampoco quieres renunciar a una alimentación saludable.</p>
+                        <p>Utilizamos la tecnología para que aproveches todo lo que tienes en casa y que puedas conectarte con <b>la mejor comunidad</b>. Queremos que cocinar deje de ser una tarea pendiente para convertirse en <span class="highlight">algo disfrutable y sostenible</span>.</p>
                     </div>
                 </div>
+
             </div>
-          </div>
         </section>
 
         <!-- Values Section -->
@@ -1585,33 +1649,59 @@
                 });
             });
 
-            // --- Apple-style Parallax Integration ---
-            const parallaxContainers = document.querySelectorAll('.feature-image, .about-image');
+            // --- Apple-style Parallax Integration (feature images only now) ---
+            const parallaxContainers = document.querySelectorAll('.feature-image');
             parallaxContainers.forEach(container => {
                 const img = container.querySelector('img');
                 if (img) {
-                    // Crea un wrapper para el parallax interno
                     const wrapper = document.createElement('div');
                     wrapper.style.height = '120%';
                     wrapper.style.width = '100%';
                     wrapper.style.position = 'relative';
-                    wrapper.style.top = '-10%'; // para compensar el height extra temporalmente
+                    wrapper.style.top = '-10%';
                     wrapper.style.willChange = 'transform';
                     wrapper.className = 'parallax-wrapper';
-                    
-                    // Asegurar que el contenedor recorta el contenido
                     container.style.overflow = 'hidden';
                     container.style.position = 'relative';
-                    
-                    // Insertar envoltorio sin romper eventos
                     container.insertBefore(wrapper, img);
                     wrapper.appendChild(img);
-                    
-                    // Ajustar IMG para llenar el sobre-espacio
                     img.style.height = '100%';
                     img.style.objectFit = 'cover';
                 }
             });
+
+            // --- About Section — Reverse Scroll (same logic as gallery-section) ---
+            const aboutSection = document.querySelector('#nosotros');
+            const aboutGallery = document.querySelector('#about-gallery');
+            const aboutColsDown = aboutGallery ? aboutGallery.querySelectorAll('.about-col-down') : [];
+            const aboutColsUp   = aboutGallery ? aboutGallery.querySelectorAll('.about-col-up')   : [];
+
+            function updateAboutGallery() {
+                if (!aboutSection || !aboutGallery) return;
+                const rect = aboutSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const scrollDist = rect.height - windowHeight;
+                let progress = 0;
+
+                if (rect.top > 0) {
+                    progress = 0;           // section approaching
+                } else if (-rect.top >= scrollDist) {
+                    progress = 1;           // section fully passed
+                } else {
+                    progress = -rect.top / scrollDist; // inside sticky zone
+                }
+
+                aboutColsDown.forEach(col => {
+                    const max = Math.max(0, col.offsetHeight - aboutGallery.offsetHeight);
+                    col.style.transform = `translateY(${-max + progress * max}px)`;
+                });
+                aboutColsUp.forEach(col => {
+                    const max = Math.max(0, col.offsetHeight - aboutGallery.offsetHeight);
+                    col.style.transform = `translateY(${progress * -max}px)`;
+                });
+            }
+
+            updateAboutGallery();
 
             const statPill = document.querySelector('.stat-pill');
             const heroImageWrap = document.querySelector('.hero-image');
@@ -1620,15 +1710,17 @@
             window.addEventListener('scroll', () => {
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
-                        // Internal Image Parallax (Mueve la imagen en contra del scroll)
+                        // Internal Image Parallax (feature images)
                         document.querySelectorAll('.parallax-wrapper').forEach(wrapper => {
                             const rect = wrapper.parentElement.getBoundingClientRect();
                             if (rect.top < window.innerHeight && rect.bottom > 0) {
-                                // Factor 0.15 da una profundidad excelente sin marear
                                 const yPos = (rect.top - window.innerHeight / 2) * 0.15;
                                 wrapper.style.transform = `translateY(${yPos}px)`;
                             }
                         });
+
+                        // About mini gallery reverse scroll
+                        if (aboutSection && aboutGallery) { updateAboutGallery(); }
 
                         // statPill parallax eliminado por petición del usuario
 
