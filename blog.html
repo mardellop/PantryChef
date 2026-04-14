@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5P4PHPE5J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-D5P4PHPE5J');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Pantry Chef - Sobrevivir a la semana</title>
+    <meta name="description" content="Descubre cómo Pantry Chef puede salvar tu dieta y ayudarte a comer sano de forma sostenible.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Blog Specific Styles */
+        :root {
+            --primary-brown: #3E2723;
+            --primary-orange: #E65100;
+            --white: #FFFFFF;
+            --blog-container-width: 1400px;
+            --article-max-width: 950px;
+        }
+
+        .reading-progress {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-orange), #FF9800);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .blog-hero {
+            padding: 180px 0 100px;
+            background: radial-gradient(circle at top right, #FFF5F2, var(--bg-light));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(230, 81, 0, 0.03);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .blog-hero .badge {
+            background-color: #F8EDEB;
+            color: var(--primary-orange);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(230, 81, 0, 0.08);
+        }
+
+        .blog-hero h1 {
+            font-size: 64px;
+            line-height: 1.05;
+            max-width: 1000px;
+            margin: 0 auto 32px;
+            color: var(--primary-brown);
+            letter-spacing: -1px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .blog-content-layout {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .blog-main-image {
+            width: 100%;
+            max-width: 1300px;
+            margin: -60px auto 80px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 10;
+        }
+
+        .blog-main-image img {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .blog-main-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 80px;
+        }
+
+        .blog-article {
+            max-width: var(--article-max-width);
+            font-family: var(--font-body);
+        }
+
+        .blog-article p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: #2D2422;
+            margin-bottom: 32px;
+            text-align: justify !important;
+            transition: none !important;
+        }
+
+        .blog-article, 
+        .blog-article *,
+        .blog-article *:hover,
+        .blog-article:hover {
+            transform: none !important;
+            transition: none !important;
+            cursor: default !important;
+            animation: none !important;
+        }
+
+        .blog-article h2 {
+            font-size: 38px;
+            margin: 64px 0 32px;
+            color: var(--primary-brown);
+            letter-spacing: -0.5px;
+        }
+
+        .blog-article blockquote {
+            border-left: 6px solid var(--primary-orange);
+            padding: 40px 60px;
+            margin: 64px 0;
+            background: #FFFBF9;
+            border-radius: 0 32px 32px 0;
+            font-family: var(--font-heading);
+            font-size: 30px;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--primary-brown);
+            position: relative;
+            text-align: justify !important;
+        }
+
+        .blog-article blockquote::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(230, 81, 0, 0.1);
+            font-family: serif;
+        }
+
+/* Footer */
+footer {
+    background: var(--primary-brown);
+    color: var(--white);
+    padding: 80px 0 40px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 4rem;
+    margin-bottom: 80px;
+}
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 24px;
+}
+.footer-brand p {
+    opacity: 0.7;
+    font-size: 15px;
+    line-height: 24px;
+}
+.footer-col h4 {
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+.footer-col ul li a {
+    opacity: 0.7;
+    font-size: 14px;
+}
+.footer-col ul li a:hover {
+    opacity: 1;
+    color: var(--primary-orange);
+}
+.footer-bottom {
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.6;
+    font-size: 14px;
+}
+
+        .share-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding-top: 64px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 80px;
+        }
+
+        .share-tag {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .share-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .share-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: var(--bg-neutral);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-brown);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .share-btn:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(230, 81, 0, 0.2);
+        }
+
+        /* Sidebar Styling */
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .sidebar-widget {
+            background: var(--bg-light);
+            padding: 32px;
+            border-radius: 32px;
+            border: 1px solid var(--border-light);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 22px;
+            margin-bottom: 28px;
+            color: var(--primary-brown);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .recent-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .recent-post-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            group: hover;
+            cursor: pointer;
+        }
+
+        .recent-post-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .recent-post-item:hover .recent-post-img {
+            transform: scale(1.1);
+        }
+
+        .recent-post-info h4 {
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 6px;
+            color: var(--primary-brown);
+            transition: color 0.3s ease;
+        }
+
+        .recent-post-item:hover h4 {
+            color: var(--primary-orange);
+        }
+
+        .recent-post-info span {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .category-pill {
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-pill:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            border-color: var(--primary-orange);
+            transform: scale(1.05);
+        }
+
+        .blog-content-layout .container {
+            max-width: var(--blog-container-width);
+        }
+
+        @media (max-width: 1200px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .blog-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            .blog-hero h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-sidebar {
+                grid-template-columns: 1fr;
+            }
+            .blog-hero h1 {
+                font-size: 36px;
+            }
+            .blog-main-image img {
+                height: 350px;
+            }
+            .blog-hero {
+                padding: 140px 0 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reading-progress" id="progressBar"></div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8XFJWWH" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Pantry Chef Logo">
+                <span>Pantry Chef</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">Nosotros</a></li>
+                    <li><a href="index.html#product">Producto</a></li>
+                    <li><a href="influencers.html">Comunidad</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="#download" class="btn btn-primary">Descargar App</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <span class="badge">Nutrición & Estilo de Vida</span>
+                <h1>Sobrevivir a la semana sin morir en el intento: Cómo Pantry Chef puede salvar tu dieta</h1>
+                <div class="post-meta">
+                    <span><i data-lucide="calendar"></i> 13 Abril, 2026</span>
+                    <span><i data-lucide="user"></i> Por Redacción Pantry Chef</span>
+                    <span><i data-lucide="clock"></i> 5 min de lectura</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="blog-main-image">
+                <img src="blog_hero_modern_kitchen_1776098679282.png" alt="Cocina saludable con Pantry Chef">
+            </div>
+        </div>
+
+        <section class="blog-content-layout">
+            <div class="container">
+                <div class="blog-grid">
+                    <article class="blog-article">
+                        <p>Para muchos jóvenes profesionales y estudiantes de entre 18 y 35 años, el ritmo de vida actual parece una carrera constante contra el reloj. El estrés del trabajo y la falta de tiempo a menudo nos empujan hacia la comida rápida, olvidando los riesgos que esto supone para nuestra salud y el impacto negativo de tirar alimentos que no supimos cómo aprovechar. Sin embargo, en <strong>Pantry Chef</strong> creemos firmemente que comer sano y de forma sostenible no debería ser un lujo ni una tarea estresante.</p>
+
+                        <blockquote>
+                            "La clave no está en tener una despensa infinita, sino en saber mirar lo que ya tienes con otros ojos."
+                        </blockquote>
+
+                        <p>Imagina que abres la nevera y solo encuentras unos huevos, un poco de queso y espinacas a punto de marchitarse. Lo que otros llamarían "sobras", nosotros lo llamamos recursos. A través de nuestra aplicación, simplemente introduces esos ingredientes y recibes al instante videotutoriales paso a paso para crear un plato sorprendente, con temporizadores incluidos para que nada falle.</p>
+
+                        <h2>Más que una lista de recetas</h2>
+                        <p>Nuestra propuesta de valor va más allá de una simple lista de platos; se trata de una herramienta de personalización total que entiende tus restricciones dietéticas y tus gustos favoritos. Queremos que te sientas parte de una comunidad donde compartir trucos de aprovechamiento sea tan divertido como el propio reto de cocinar. Al usar Pantry Chef, no solo estás optimizando tu tiempo y tu dinero, sino que te conviertes en protagonista de un cambio hacia un estilo de vida más ético y consciente.</p>
+
+                        <p>Cocinar ya no es una tarea pendiente, es el momento de disfrutar de la alta cocina en tu propia casa, con tus propias reglas y, sobre todo, con mucha facilidad.</p>
+
+                        <div class="share-section">
+                            <span class="share-tag">Comparte este artículo:</span>
+                            <div class="share-links">
+                                <a href="#" class="share-btn"><i data-lucide="twitter"></i></a>
+                                <a href="#" class="share-btn"><i data-lucide="facebook"></i></a>
+                                <a href="#" class="share-btn"><i data-lucide="instagram"></i></a>
+                                <a href="#" class="share-btn"><i data-lucide="link-2"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <aside class="blog-sidebar">
+                        <div class="sidebar-widget">
+                            <h3><i data-lucide="trending-up"></i> Lo más leído</h3>
+                            <div class="recent-posts">
+                                <div class="recent-post-item">
+                                    <img src="feature-1.png" class="recent-post-img" alt="Post">
+                                    <div class="recent-post-info">
+                                        <h4>5 Trucos para organizar tu nevera</h4>
+                                        <span>Hoy</span>
+                                    </div>
+                                </div>
+                                <div class="recent-post-item">
+                                    <img src="feature-2.png" class="recent-post-img" alt="Post">
+                                    <div class="recent-post-info">
+                                        <h4>Cero desperdicio: Guía completa</h4>
+                                        <span>Ayer</span>
+                                    </div>
+                                </div>
+                                <div class="recent-post-item">
+                                    <img src="feature-3.png" class="recent-post-img" alt="Post">
+                                    <div class="recent-post-info">
+                                        <h4>Recetas en 5 minutos para el trabajo</h4>
+                                        <span>Hace 2 días</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3><i data-lucide="layers"></i> Categorías</h3>
+                            <div class="categories">
+                                <span class="category-pill">Recetas (12)</span>
+                                <span class="category-pill">Sostenibilidad (8)</span>
+                                <span class="category-pill">Tips (15)</span>
+                                <span class="category-pill">Comunidad (5)</span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <!-- Contact & Footer -->
+        <footer id="contacto">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#inicio" class="logo">
+                            <img src="logo.png" alt="Pantry Chef Logo">
+                            Pantry Chef
+                        </a>
+                        <p>Cocinando un futuro más saludable y sostenible para todos.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Nuestros servicios</h4>
+                        <ul>
+                            <li><a href="#">Recetas personalizadas</a></li>
+                            <li><a href="#">Comunidad Pantry Chef</a></li>
+                            <li><a href="#">Lista de compra inteligente</a></li>
+                            <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j">Eventos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Nuestra empresa</h4>
+                        <ul>
+                            <li><a href="#">Sobre nosotros</a></li>
+                            <li><a href="#">Nuestros valores</a></li>
+                            <li><a href="#">Noticias</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li><a href="#">Sevilla, España</a></li>
+                            <li><a href="#">pantrychefmarketing@gmail.com</a></li>
+                            <li><a href="#">+34 123 45 67 89</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Pantry Chef. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Reading Progress Bar
+        window.onscroll = function() {
+            updateProgressBar();
+        };
+
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        }
+    </script>
+</body>
+
+</html>
