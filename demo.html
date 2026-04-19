@@ -6,6 +6,8 @@
     <title>Pantry Chef</title>
     <meta name="description" content="Prueba Pantry Chef gratis: selecciona 3 ingredientes y descubre las recetas que puedes preparar ahora mismo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png"
+        href="https://github.com/mardellop/Pantry-Chef/blob/main/PantryChef%20Logo.png?raw=true">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -59,7 +61,7 @@
         nav ul li a {
             font-size: 14px;
             font-weight: 500;
-            color: var(--text-muted);
+            color: var(--primary-brown);
         }
 
         nav ul li a:hover {
@@ -811,8 +813,8 @@
 
         /* ── BOTTOM CTA ──────────────────────────────── */
         .bottom-cta {
-            padding: 100px 0;
-            background: radial-gradient(circle at 65% 30%, #4E342E 0%, #3E2723 100%);
+            padding: 40px 0;
+            background: radial-gradient(circle at 65% 30%, #4E342E 0%, #fff 250%);
             text-align: center;
             color: var(--white);
         }
@@ -854,14 +856,61 @@
         .store-cta.google:hover { background: var(--orange-hover); transform: translateY(-2px); }
 
         /* ── FOOTER ──────────────────────────────────── */
+       /* Footer */
         footer {
-            background: #2A1A17;
+            background: var(--primary-brown);
             color: var(--white);
-            padding: 32px 0;
-            text-align: center;
+            padding: 30px 0 40px;
         }
-        footer p { font-size: 13px; opacity: 0.5; }
-        footer a { color: var(--primary-orange); opacity: 0.9; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 24px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
 
         /* ── RESPONSIVE ──────────────────────────────── */
         @media (max-width: 700px) {
@@ -935,17 +984,21 @@
 <body>
 
 <!-- ── HEADER ── -->
-    <header>
+      <header>
         <div class="containerWide container">
-            <a href="index.html#inicio" class="logo">
+            <a href="#inicio" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
             </a>
-            <nav>
+            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
+                <nav>
                 <ul>
-                    <li><a href="index.html#inicio">Inicio</a></li>
-                    <li><a href="index.html#nosotros">Sobre nosotros</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
+                    <li><a href="https://mardellop.github.io/PantryChef">Inicio</a></li>
+                        <li><a href="influencers.html">Cede el delantal</a></li>
+                    <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
+                        <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
+                        <li><a href="blog.html">Pantry Blog</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -1110,12 +1163,48 @@
     </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-    <div class="container">
-        <p>© 2026 Pantry Chef · Hecho con ♡  en Sevilla ·</p>
-    </div>
-</footer>
+        <!-- Contact & Footer -->
+        <footer id="contacto">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#inicio" class="logo">
+                            <img src="logo.png" alt="Pantry Chef Logo">
+                            Pantry Chef
+                        </a>
+                        <p>Cocinando un futuro más saludable y sostenible para todos.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Nuestros servicios</h4>
+                        <ul>
+                            <li><a href="#">Recetas personalizadas</a></li>
+                            <li><a href="#">Comunidad Pantry Chef</a></li>
+                            <li><a href="#">Lista de compra inteligente</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Nuestra empresa</h4>
+                        <ul>
+                        <li><a href="#nosotros">Sobre nosotros</a></li>
+                            <li><a href="#">Nuestros valores</a></li>
+                            <li><a href="#">Pantry Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li><a href="#">Sevilla, España</a></li>
+                            <li><a href="#">pantrychefmarketing@gmail.com</a></li>
+                            <li><a href="#">+34 123 45 67 89</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Pantry Chef. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
 
 <!-- ── DOWNLOAD MODAL ── -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
