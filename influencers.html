@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,6 +10,8 @@
         content="Pantry Chef te ayuda a preparar comidas saludables con lo que ya tienes en casa. Sin planificación, sin complicaciones.">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png"
+        href="https://github.com/mardellop/Pantry-Chef/blob/main/PantryChef%20Logo.png?raw=true">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
@@ -163,7 +166,7 @@
         nav ul li a {
             font-size: 14px;
             font-weight: 500;
-            color: var(--text-muted);
+            color: var(--primary-brown);
         }
 
         nav ul li a:hover {
@@ -695,18 +698,18 @@
             padding: 16px 32px;
         }
 
-        /* Footer */
+       /* Footer */
         footer {
             background: var(--primary-brown);
             color: var(--white);
-            padding: 80px 0 40px;
+            padding: 30px 0 40px;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 1.5fr repeat(3, 1fr);
             gap: 4rem;
-            margin-bottom: 80px;
+            margin-bottom: 30px;
         }
 
         .footer-brand .logo {
@@ -741,7 +744,7 @@
         }
 
         .footer-bottom {
-            padding-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
@@ -749,6 +752,7 @@
             opacity: 0.6;
             font-size: 14px;
         }
+
 
         /* Animations */
         .revealed {
@@ -891,7 +895,7 @@
         }
 
         .modal-header h2 {
-            font-size: 48px;
+            font-size: 45px;
             color: var(--primary-brown);
             margin-bottom: 12px;
             letter-spacing: -1px;
@@ -1438,18 +1442,17 @@
     <!-- Header -->
     <header>
         <div class="containerWide container">
-            <a href="https://mardellop.github.io/PantryChef/" class="logo">
+            <a href="#inicio" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
             </a>
-            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
-                <i data-lucide="menu"></i>
-            </button>
-            <nav>
+            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
+                <nav>
                 <ul>
                     <li><a href="https://mardellop.github.io/PantryChef">Inicio</a></li>
-                    <li><a href="https://mardellop.github.io/PantryChef/#nosotros">Sobre nosotros</a></li>
-                    <li><a href="https://mardellop.github.io/Pantry-Chef/">App Pantry Chef</a></li>
+                    <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
+                        <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
+                        <li><a href="blog.html">Pantry Blog</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                     <li class="mobile-only"><a href="demo.html" class="btn btn-primary" style="background: var(--primary-orange); color: var(--white); width: 100%; text-align: center;">Probar demo</a></li>
                 </ul>
@@ -1497,23 +1500,12 @@
             </div>
         </section>
 
-        <!-- Newsletter Section -->
-        <section id="noticias" class="newsletter">
-            <div class="container">
-                <h2>Noticias y consejos</h2>
-                <p>Mantente al día con las últimas tendencias culinarias, consejos y novedades de Pantry Chef.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Tu correo electrónico" required>
-                    <button type="submit" class="btn btn-dark btn-primary">Suscribirme</button>
-                </form>
-            </div>
-        </section>
         <!-- Contact & Footer -->
         <footer id="contacto">
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <a href="#" class="logo">
+                        <a href="#inicio" class="logo">
                             <img src="logo.png" alt="Pantry Chef Logo">
                             Pantry Chef
                         </a>
@@ -1522,19 +1514,17 @@
                     <div class="footer-col">
                         <h4>Nuestros servicios</h4>
                         <ul>
-                            <li><a href="#">Recetas con IA</a></li>
+                            <li><a href="#">Recetas personalizadas</a></li>
                             <li><a href="#">Comunidad Pantry Chef</a></li>
-                            <li><a href="#">Listas de compra inteligentes</a></li>
-                            <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j">Eventos</a></li>
+                            <li><a href="#">Lista de compra inteligente</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Nuestra empresa</h4>
                         <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#nosotros">Sobre nosotros</a></li>
                             <li><a href="#">Nuestros valores</a></li>
-                            <li><a href="#">Noticias</a></li>
-                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Pantry Blog</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -1551,6 +1541,7 @@
                 </div>
             </div>
         </footer>
+
     </main>
 
     <!-- Modal de Recetas de Roro -->
@@ -1792,7 +1783,7 @@
                 <i data-lucide="x"></i>
             </button>
             <div class="modal-header">
-                <h2>El "glow-up" Bowl de 8 minutos</h2>
+                <h2>El Bowl de Boukie que se prepara en 8 minutos</h2>
                 <div class="sub-title">"Fresco, saciante y con ese toque crunchy"</div>
                 <p>Es perfecto para cuando el hambre aprieta y el tiempo escasea.</p>
             </div>
