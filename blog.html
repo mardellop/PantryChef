@@ -12,11 +12,13 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Pantry Chef - Sobrevivir a la semana</title>
+    <title>Pantry Chef | Blog</title>
     <meta name="description" content="Descubre cómo Pantry Chef puede salvar tu dieta y ayudarte a comer sano de forma sostenible.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png"
+        href="https://github.com/mardellop/Pantry-Chef/blob/main/PantryChef%20Logo.png?raw=true">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
@@ -194,52 +196,60 @@
             font-family: serif;
         }
 
-/* Footer */
-footer {
-    background: var(--primary-brown);
-    color: var(--white);
-    padding: 80px 0 40px;
-}
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr repeat(3, 1fr);
-    gap: 4rem;
-    margin-bottom: 80px;
-}
-.footer-brand .logo {
-    color: var(--white);
-    margin-bottom: 24px;
-}
-.footer-brand p {
-    opacity: 0.7;
-    font-size: 15px;
-    line-height: 24px;
-}
-.footer-col h4 {
-    margin-bottom: 24px;
-    font-size: 16px;
-    font-weight: 700;
-}
-.footer-col ul li {
-    margin-bottom: 12px;
-}
-.footer-col ul li a {
-    opacity: 0.7;
-    font-size: 14px;
-}
-.footer-col ul li a:hover {
-    opacity: 1;
-    color: var(--primary-orange);
-}
-.footer-bottom {
-    padding-top: 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0.6;
-    font-size: 14px;
-}
+       /* Footer */
+        footer {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 30px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 24px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 14px;
+        }
 
         .share-section {
             display: flex;
@@ -351,6 +361,21 @@ footer {
             font-weight: 500;
         }
 
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-brown);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-orange);
+        }
+
         .categories {
             display: flex;
             flex-wrap: wrap;
@@ -420,21 +445,24 @@ footer {
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+     <!-- Header -->
     <header>
-        <div class="container">
-            <a href="index.html" class="logo">
+        <div class="containerWide container">
+            <a href="#inicio" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
-                <span>Pantry Chef</span>
+                Pantry Chef
             </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html#about">Nosotros</a></li>
-                    <li><a href="index.html#product">Producto</a></li>
-                    <li><a href="influencers.html">Comunidad</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
-            <a href="#download" class="btn btn-primary">Descargar App</a>
+            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
+                <nav>
+                    <ul>
+                        <li><a href="influencers.html">Cede el delantal</a></li>
+                        <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
+                        <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                <a href="demo.html" class="btn btn-primary" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
+            </div>
         </div>
     </header>
 
@@ -529,6 +557,7 @@ footer {
     </main>
 
         <!-- Contact & Footer -->
+        <!-- Contact & Footer -->
         <footer id="contacto">
             <div class="container">
                 <div class="footer-grid">
@@ -545,16 +574,14 @@ footer {
                             <li><a href="#">Recetas personalizadas</a></li>
                             <li><a href="#">Comunidad Pantry Chef</a></li>
                             <li><a href="#">Lista de compra inteligente</a></li>
-                            <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j">Eventos</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Nuestra empresa</h4>
                         <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#nosotros">Sobre nosotros</a></li>
                             <li><a href="#">Nuestros valores</a></li>
-                            <li><a href="#">Noticias</a></li>
-                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Pantry Blog</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
