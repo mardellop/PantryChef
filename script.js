@@ -1,8 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Lucide icons
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
     // Counter Animation
     const counter = document.getElementById('counter');
     if (counter) {
