@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 :root {
-    --primary-brown: #E65100;
-    --primary-orange: #E65100;
-    --orange-hover: #BF360C;
-    --text-main: #E65100;
-    --text-muted: #000000;
-    --bg-light: #FDFBF7;
-    --bg-neutral: #F5F5F0;
-    --white: #FFFFFF;
-    --border-light: #EFEBE9;
     --font-heading: 'Playfair Display', poppins;
     --font-body: 'Manrope', poppins;
     --container-max-width: 1200px;
@@ -25,8 +16,8 @@ html {
 }
 body {
     font-family: var(--font-body);
-    color: var(--text-main);
-    background-color: var(--bg-light);
+    color: #E65100;
+    background-color: #FDFBF7;
     line-height: 1.5;
     overflow-x: hidden;
 }
@@ -67,13 +58,13 @@ img {
     font-size: 14px;
 }
 .btn-primary {
-    background-color: var(--primary-orange);
-    color: var(--white);
+    background-color: #E65100;
+    color: #fff;
     padding: 8px 24px;
     box-shadow: 0 10px 15px -3px rgba(230, 81, 0, 0.1);
 }
 .btn-primary:hover {
-    background-color: var(--orange-hover);
+    background-color: #BF360C;
     transform: translateY(-1px);
 }
 .btn-large {
@@ -82,8 +73,8 @@ img {
 }
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--primary-brown);
-    color: var(--primary-brown);
+    border: 2px solid #E65100;
+    color: #E65100;
 }
 .btn-outline:hover {
     background-color: rgba(62, 39, 35, 0.05);
@@ -97,7 +88,7 @@ header {
     backdrop-filter: blur(24px);
     background: rgba(255, 255, 255, 0.8);
     z-index: 1000;
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid #EFEBE9;
     display: flex;
     align-items: center;
 }
@@ -114,7 +105,7 @@ header .container {
     font-family: var(--font-heading);
     font-size: 20px;
     font-weight: 700;
-    color: var(--primary-brown);
+    color: #E65100;
 }
 .logo img {
     height: 48px;
@@ -126,16 +117,16 @@ nav ul {
 nav ul li a {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-muted);
+    color: #000000;
 }
 nav ul li a:hover {
-    color: var(--primary-orange);
+    color: #E65100;
 }
 /* Hero Section */
 .hero {
     padding-top: calc(var(--header-height) + 100px);
     padding-bottom: 150px;
-    background-color: var(--bg-light);
+    background-color: #FDFBF7;
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -149,7 +140,7 @@ nav ul li a:hover {
 }
 .hero-content .badge {
     background-color: #F8EDEB;
-    color: var(--primary-orange);
+    color: #E65100;
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 13px;
@@ -163,25 +154,25 @@ nav ul li a:hover {
     content: '';
     width: 6px;
     height: 6px;
-    background-color: var(--primary-orange);
+    background-color: #E65100;
     border-radius: 50%;
 }
 .hero h1 {
     font-size: 72px;
     line-height: 72px;
     letter-spacing: -1.8px;
-    color: var(--primary-brown);
+    color: #E65100;
     margin-bottom: 24px;
 }
 .hero h1 span {
-    color: var(--primary-orange);
+    color: #E65100;
     font-style: italic;
     display: block;
 }
 .hero p {
     font-size: 18px;
     line-height: 28px;
-    color: var(--text-muted);
+    color: #000000;
     margin-bottom: 32px;
     max-width: 520px;
 }
@@ -206,7 +197,7 @@ nav ul li a:hover {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-muted);
+    color: #000000;
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
@@ -239,17 +230,17 @@ nav ul li a:hover {
     font-size: 48px;
     line-height: 48px;
     margin-bottom: 24px;
-    color: var(--primary-brown);
+    color: #E65100;
 }
 .section-header p {
     font-size: 18px;
     line-height: 28px;
-    color: var(--text-muted);
+    color: #000000;
 }
 /* About Section */
 .about {
     padding: 120px 0;
-    background-color: var(--white);
+    background-color: #fff;
 }
 .about .container {
     display: grid;
@@ -268,17 +259,17 @@ nav ul li a:hover {
     position: absolute;
     bottom: 40px;
     left: 40px;
-    background: var(--white);
+    background: #fff;
     padding: 1.25rem 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
     gap: 1rem;
-    border: 1px solid var(--border-light);
+    border: 1px solid #EFEBE9;
 }
 .stat-pill i {
-    color: var(--primary-orange);
+    color: #E65100;
     background: rgba(230, 81, 0, 0.1);
     padding: 10px;
     border-radius: 12px;
@@ -287,16 +278,16 @@ nav ul li a:hover {
     display: block;
     font-weight: 700;
     font-size: 20px;
-    color: var(--primary-brown);
+    color: #E65100;
 }
 .stat-text p {
     font-size: 12px;
     font-weight: 500;
-    color: var(--text-muted);
+    color: #000000;
     margin: 0;
 }
 .about-content h4 {
-    color: var(--primary-orange);
+    color: #E65100;
     background: rgba(230, 81, 0, 0.1);
     display: inline-block;
     padding: 4px 12px;
@@ -315,20 +306,20 @@ nav ul li a:hover {
     font-size: 18px;
     line-height: 28px;
     margin-bottom: 20px;
-    color: var(--text-muted);
+    color: #000000;
 }
 .about-content b {
-    color: var(--primary-brown);
+    color: #E65100;
     font-weight: 600;
 }
 .highlight {
-    color: var(--primary-orange);
+    color: #E65100;
     font-weight: 700;
 }
 /* Values Section */
 .values {
     padding: 120px 0;
-    background-color: var(--bg-neutral);
+    background-color: #F5F5F0;
 }
 .values-grid {
     display: grid;
@@ -336,10 +327,10 @@ nav ul li a:hover {
     gap: 2.5rem;
 }
 .value-card {
-    background: var(--white);
+    background: #fff;
     padding: 40px;
     border-radius: 24px;
-    border: 1px solid var(--border-light);
+    border: 1px solid #EFEBE9;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
     transition: var(--transition);
 }
@@ -351,7 +342,7 @@ nav ul li a:hover {
     width: 48px;
     height: 48px;
     background: rgba(230, 81, 0, 0.1);
-    color: var(--primary-orange);
+    color: #E65100;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -361,18 +352,18 @@ nav ul li a:hover {
 .value-card h3 {
     font-size: 20px;
     margin-bottom: 16px;
-    color: var(--primary-brown);
+    color: #E65100;
     font-family: var(--font-heading);
 }
 .value-card p {
-    color: var(--text-muted);
+    color: #000000;
     font-size: 15px;
     line-height: 24px;
 }
 /* Product Section */
 .product {
     padding: 120px 0;
-    background-color: var(--white);
+    background-color: #fff;
 }
 .product-feature {
     display: grid;
@@ -394,7 +385,7 @@ nav ul li a:hover {
 }
 .feature-badge {
     background: rgba(230, 81, 0, 0.1);
-    color: var(--primary-orange);
+    color: #E65100;
     padding: 4px 12px;
     border-radius: 8px;
     font-size: 12px;
@@ -410,7 +401,7 @@ nav ul li a:hover {
 .feature-content p {
     font-size: 18px;
     line-height: 28px;
-    color: var(--text-muted);
+    color: #000000;
 }
 .feature-summary-grid {
     display: grid;
@@ -419,28 +410,28 @@ nav ul li a:hover {
     margin-top: 40px;
 }
 .summary-item {
-    background: var(--bg-neutral);
+    background: #F5F5F0;
     padding: 24px;
     border-radius: 20px;
     text-align: center;
 }
 .summary-item i {
-    color: var(--primary-orange);
+    color: #E65100;
     margin-bottom: 12px;
     display: inline-block;
 }
 .summary-item p {
     font-size: 14px;
     font-weight: 600;
-    color: var(--primary-brown);
+    color: #E65100;
 }
 /* Download Section */
 .download-wrapper {
     padding: 80px 0;
 }
 .download {
-    background: var(--primary-orange);
-    color: var(--white);
+    background: #E65100;
+    color: #fff;
     border-radius: 40px;
     padding: 100px 80px;
     display: grid;
@@ -455,7 +446,7 @@ nav ul li a:hover {
     margin-bottom: 24px;
 }
 .download h2 span {
-    color: var(--primary-orange);
+    color: #E65100;
 }
 .download p {
     font-size: 18px;
@@ -477,16 +468,16 @@ nav ul li a:hover {
     font-size: 14px;
 }
 .store-btn.apple {
-    background: var(--white);
-    color: var(--primary-brown);
+    background: #fff;
+    color: #E65100;
 }
 .store-btn.google {
-    background: var(--primary-orange);
-    color: var(--white);
+    background: #E65100;
+    color: #fff;
 }
 /* Newsletter */
 .newsletter {
-    background: var(--bg-neutral);
+    background: #F5F5F0;
     padding: 120px 0;
     text-align: center;
 }
@@ -496,7 +487,7 @@ nav ul li a:hover {
 }
 .newsletter p {
     font-size: 18px;
-    color: var(--text-muted);
+    color: #000000;
     margin-bottom: 48px;
 }
 .newsletter-form {
@@ -509,20 +500,20 @@ nav ul li a:hover {
     flex: 1;
     padding: 16px 24px;
     border-radius: 9999px;
-    border: 1px solid var(--border-light);
+    border: 1px solid #EFEBE9;
     font-family: var(--font-body);
     font-size: 16px;
     outline: none;
 }
 .btn-dark {
-    background: var(--primary-brown);
-    color: var(--white);
+    background: #E65100;
+    color: #fff;
     padding: 16px 32px;
 }
 /* Footer */
 footer {
-    background: var(--primary-brown);
-    color: var(--white);
+    background: #E65100;
+    color: #fff;
     padding: 80px 0 40px;
 }
 .footer-grid {
@@ -532,7 +523,7 @@ footer {
     margin-bottom: 80px;
 }
 .footer-brand .logo {
-    color: var(--white);
+    color: #fff;
     margin-bottom: 24px;
 }
 .footer-brand p {
@@ -554,7 +545,7 @@ footer {
 }
 .footer-col ul li a:hover {
     opacity: 1;
-    color: var(--primary-orange);
+    color: #E65100;
 }
 .footer-bottom {
     padding-top: 40px;
