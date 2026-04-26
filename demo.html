@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --primary-brown: #3E2723;
@@ -53,20 +54,6 @@
             padding: 0 1.5rem;
         }
 
-        nav ul {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav ul li a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--primary-brown);
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-orange);
-        }
 
         /* ── HEADER ──────────────────────────────────── */
         /* Header */
@@ -88,8 +75,6 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding-top: 15px;
-            padding-bottom: 15px;
         }
 
         .logo {
@@ -323,8 +308,8 @@
         /* Grid */
         .ingredient-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -979,28 +964,48 @@
             from { opacity: 0; transform: translateY(20px) scale(0.95); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
+        /* Responsive Mobile Layout for Demo */
+        @media (max-width: 768px) {
+            .recipe-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .modal-inner {
+                flex-direction: column;
+                max-height: 95vh;
+            }
+            .modal-img-col {
+                height: 250px;
+                flex: none;
+            }
+        }
     </style>
 </head>
 <body>
 
 <!-- ── HEADER ── -->
-      <header>
+    <header>
         <div class="containerWide container">
             <a href="#inicio" class="logo">
-                <img src="logo.png" alt="Pantry Chef Logo">
-                Pantry Chef
+                <img src="logo.png" alt="Pantry Chef Logo"> Pantry Chef
             </a>
-            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
-                <nav>
+            <nav id="mainNav">
                 <ul>
                     <li><a href="https://mardellop.github.io/PantryChef">Inicio</a></li>
-                        <li><a href="influencers.html">Cede el delantal</a></li>
+                    <li><a href="influencers.html">Cede el delantal</a></li>
                     <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
-                        <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
-                        <li><a href="blog.html">Pantry Blog</a></li>
+                    <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
+                    <li><a href="blog.html">Pantry Blog</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
+            <div class="header-right" style="display:flex; align-items:center; gap:1rem;">
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -2201,6 +2206,28 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
     
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
     // Add stagger to ingredient chips
     const chips = document.querySelectorAll('.ingredient-chip');
     chips.forEach((chip, idx) => {
