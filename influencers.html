@@ -800,9 +800,17 @@
         }
 
         @media (max-width: 640px) {
+            html, body { overflow-x: hidden; max-width: 100vw; }
+
             .hero h1 {
-                font-size: 40px;
-                line-height: 40px;
+                font-size: clamp(30px, 9vw, 40px);
+                line-height: 1.15;
+                word-wrap: break-word;
+            }
+            .hero p {
+                font-size: 17px;
+                line-height: 1.6;
+                text-align: center;
             }
 
             .hero-btns,
@@ -820,8 +828,10 @@
                 grid-template-columns: 1fr;
             }
 
-            nav {
-                display: none;
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
             }
         }
 
@@ -1375,40 +1385,7 @@
 
         @media (max-width: 992px) {
             .mobile-nav-toggle {
-                display: block;
-            }
-
-            header .container {
-                justify-content: space-between;
-                position: relative;
-            }
-
-            header nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 40px 20px;
-                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-                border-top: 1px solid var(--border-light);
-                z-index: 1000;
-            }
-
-            header nav.active {
-                display: block;
-            }
-
-            header nav ul {
-                flex-direction: column;
-                gap: 24px !important;
-                align-items: center;
-            }
-
-            header nav ul li a {
-                font-size: 20px;
-                font-weight: 600;
+                display: none; /* We use the global .menu-toggle instead */
             }
 
             .desktop-only {
@@ -1461,7 +1438,7 @@
                     <!-- Influencer 1 -->
                     <div class="influencer-card">
                         <div class="influencer-img-container">
-                            <img src="pack-exclusivo-roro.jpg" alt="Influencer Cooking" onerror="this.src='https://placehold.co/600x400?text=Menu+Influencer'">
+                            <img src="pack-exclusivo-roro.png" alt="Influencer Cooking" onerror="this.src='https://placehold.co/600x400?text=Menu+Influencer'">
                         </div>
                         <div class="influencer-body" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                             <h3>Hemos seleccionado las 5 recetas favoritas de RoRo para que no tengas que pensar el menú</h3>
@@ -1473,7 +1450,7 @@
                     <!-- Influencer 2 -->
                     <div class="influencer-card">
                         <div class="influencer-img-container">
-                            <img src="cena-boukie.jpg" alt="Influencer Dinner" onerror="this.src='https://placehold.co/600x400?text=Cena+Rapida'">
+                            <img src="cena-boukie.png" alt="Influencer Dinner" onerror="this.src='https://placehold.co/600x400?text=Cena+Rapida'">
                         </div>
                         <div class="influencer-body" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                             <h3>La cena rápida de Boukie para días cansados</h3>
