@@ -15,10 +15,6 @@
   <style>
     :root{--primary-brown:#3E2723;--primary-orange:#E65100;--white:#FFFFFF;}
 
-    /* NAV */
-    nav ul{display:flex;gap:2rem;}
-    nav ul li a{font-size:14px;font-weight:500;color:var(--primary-brown);}
-    nav ul li a:hover{color:var(--primary-orange);}
 
     /* HERO */
     .blog-hero{padding:120px 0 0px;background:radial-gradient(circle at top right,#FFF5F2,var(--bg-light));text-align:center;position:relative;overflow:hidden;}
@@ -73,27 +69,32 @@
     .footer-bottom{padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;opacity:.6;font-size:14px;}
 
     @media(max-width:900px){.blog-cards{grid-template-columns:1fr;}.blog-hero h1{font-size:38px;}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}}
-    @media(max-width:600px){.blog-hero h1{font-size:30px;}.modal-content{padding:28px;}.modal-content h1{font-size:26px;}.modal-img{height:240px;}}
+    @media(max-width:600px){.blog-hero h1{font-size:30px;}.modal-content{padding:28px;}.modal-content h1{font-size:26px;}.modal-img{height:240px;}.footer-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
-    <div class="containerWide container">
+    <div class="container">
       <a href="index.html" class="logo">
         <img src="logo.png" alt="Pantry Chef Logo"> Pantry Chef
       </a>
-      <div class="header-right" style="display:flex;align-items:center;gap:2rem;">
-        <nav>
-          <ul>
-            <li><a href="influencers.html">Cede el delantal</a></li>
-            <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener">App Pantry Chef</a></li>
-            <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener">Nuestros eventos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-          </ul>
-        </nav>
-        <a href="demo.html" class="btn btn-primary" style="margin-right:.5rem;background:transparent;border:2px solid var(--primary-orange);color:var(--primary-orange);box-shadow:none;">Probar demo</a>
+      <nav id="mainNav">
+        <ul>
+          <li><a href="influencers.html">Cede el delantal</a></li>
+          <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener">App Pantry Chef</a></li>
+          <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener">Nuestros eventos</a></li>
+          <li><a href="blog.html">Pantry Blog</a></li>
+        </ul>
+      </nav>
+      <div class="header-right" style="display:flex; align-items:center; gap:1rem;">
+        <a href="demo.html" class="btn btn-primary">Probar demo</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
@@ -115,7 +116,7 @@
           <!-- Card 1 -->
           <div class="blog-card" onclick="openModal('post1')">
             <div class="card-img-wrap">
-              <img src="entrada-de-blog-1.jpg" class="card-img" alt="Cómo Pantry Chef puede salvar tu dieta">
+              <img src="feature-1.png" class="card-img" alt="Cómo Pantry Chef puede salvar tu dieta">
             </div>
             <div class="card-body">
               <span class="card-badge">Nutrición y estilo de vida</span>
@@ -132,7 +133,7 @@
           <!-- Card 2 -->
           <div class="blog-card" onclick="openModal('post2')">
             <div class="card-img-wrap">
-              <img src="entrada-de-blog-2.jpg" class="card-img" alt="5 trucos para organizar tu nevera">
+              <img src="feature-2.png" class="card-img" alt="5 trucos para organizar tu nevera">
             </div>
             <div class="card-body">
               <span class="card-badge">Organización</span>
@@ -149,7 +150,7 @@
           <!-- Card 3 -->
           <div class="blog-card" onclick="openModal('post3')">
             <div class="card-img-wrap">
-              <img src="entrada-de-blog-3.jpg" class="card-img" alt="Cero desperdicio guía completa">
+              <img src="feature-3.png" class="card-img" alt="Cero desperdicio guía completa">
             </div>
             <div class="card-body">
               <span class="card-badge">Sostenibilidad</span>
@@ -166,7 +167,7 @@
           <!-- Card 4 -->
           <div class="blog-card" onclick="openModal('post4')">
             <div class="card-img-wrap">
-              <img src="entrada-de-blog-4.jpg" class="card-img" alt="Recetas en 5 minutos para el trabajo">
+              <img src="crema-de-espinacas.png" class="card-img" alt="Recetas en 5 minutos para el trabajo">
             </div>
             <div class="card-body">
               <span class="card-badge">Recetas rápidas</span>
@@ -189,7 +190,7 @@
   <div class="modal-overlay" id="modal-post1" onclick="closeOnOverlay(event,'modal-post1')">
     <div class="modal-box">
       <div class="modal-close"><button class="close-btn" onclick="closeModal('modal-post1')"><i data-lucide="x"></i></button></div>
-      <img src="entrada-de-blog-1.jpg" class="modal-img" alt="Cómo Pantry Chef puede salvar tu dieta">
+      <img src="feature-1.png" class="modal-img" alt="Cómo Pantry Chef puede salvar tu dieta">
       <div class="modal-content">
         <span class="modal-badge">Nutrición y estilo de vida</span>
         <h1>Sobrevivir a la semana sin morir en el intento: Cómo Pantry Chef puede salvar tu dieta</h1>
@@ -213,7 +214,7 @@
   <div class="modal-overlay" id="modal-post2" onclick="closeOnOverlay(event,'modal-post2')">
     <div class="modal-box">
       <div class="modal-close"><button class="close-btn" onclick="closeModal('modal-post2')"><i data-lucide="x"></i></button></div>
-      <img src="entrada-de-blog-2.jpg" class="modal-img" alt="Organiza tu nevera">
+      <img src="feature-2.png" class="modal-img" alt="Organiza tu nevera">
       <div class="modal-content">
         <span class="modal-badge">Organización</span>
         <h1>Guía de rescate: Cómo interpretar tu nevera antes de que sea tarde</h1>
@@ -235,7 +236,7 @@
   <div class="modal-overlay" id="modal-post3" onclick="closeOnOverlay(event,'modal-post3')">
     <div class="modal-box">
       <div class="modal-close"><button class="close-btn" onclick="closeModal('modal-post3')"><i data-lucide="x"></i></button></div>
-      <img src="entrada-de-blog-3.jpg" class="modal-img" alt="Cero desperdicio">
+      <img src="feature-3.png" class="modal-img" alt="Cero desperdicio">
       <div class="modal-content">
         <span class="modal-badge">Sostenibilidad</span>
         <h1>El calendario de temporada: ¿Por qué sabe mejor lo que crece cerca?</h1>
@@ -257,7 +258,7 @@
   <div class="modal-overlay" id="modal-post4" onclick="closeOnOverlay(event,'modal-post4')">
     <div class="modal-box">
       <div class="modal-close"><button class="close-btn" onclick="closeModal('modal-post4')"><i data-lucide="x"></i></button></div>
-      <img src="entrada-de-blog-4.jpg" class="modal-img" alt="Recetas en 5 minutos">
+      <img src="crema-de-espinacas.png" class="modal-img" alt="Recetas en 5 minutos">
       <div class="modal-content">
         <span class="modal-badge">Recetas rápidas</span>
         <h1>La “Mise en Place”: El secreto profesional para no estresarse cocinando</h1>
@@ -316,6 +317,28 @@
 
   <script>
     lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+      });
+
+      // Close menu when clicking on a link
+      const navLinks = mainNav.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          mainNav.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
 
     function openModal(id) {
       const el = document.getElementById('modal-' + id);
