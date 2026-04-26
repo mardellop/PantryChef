@@ -16,8 +16,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
-    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --primary-brown: #3E2723;
@@ -158,20 +158,6 @@
             height: 48px;
         }
 
-        nav ul {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav ul li a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--primary-brown);
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-orange);
-        }
 
         /* Hero Section */
         .hero {
@@ -1439,25 +1425,27 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header>
-        <div class="containerWide container">
-            <a href="#inicio" class="logo">
-                <img src="logo.png" alt="Pantry Chef Logo">
-                Pantry Chef
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Pantry Chef Logo"> Pantry Chef
             </a>
-            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
-                <nav>
+            <nav id="mainNav">
                 <ul>
-                    <li><a href="https://mardellop.github.io/PantryChef">Inicio</a></li>
-                    <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
-                        <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener noreferrer">Nuestros eventos</a></li>
-                        <li><a href="blog.html">Pantry Blog</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                    <li class="mobile-only"><a href="demo.html" class="btn btn-primary" style="background: var(--primary-orange); color: var(--white); width: 100%; text-align: center;">Probar demo</a></li>
+                    <li><a href="influencers.html">Cede el delantal</a></li>
+                    <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener">App Pantry Chef</a></li>
+                    <li><a href="https://lp.constantcontactpages.com/ev/reg/zha446j" target="_blank" rel="noopener">Nuestros eventos</a></li>
+                    <li><a href="blog.html">Pantry Blog</a></li>
                 </ul>
             </nav>
-            <a href="demo.html" class="btn btn-primary desktop-only" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
+            <div class="header-right" style="display:flex; align-items:center; gap:1rem;">
+                <a href="demo.html" class="btn btn-primary">Probar demo</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
     <main>
@@ -1840,35 +1828,6 @@
                 window.lucide.createIcons();
             }
 
-            // --- LÓGICA NAV MÓVIL ---
-            const navToggle = document.getElementById('mobile-nav-toggle');
-            const navMenu = document.querySelector('header nav');
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    const icon = navToggle.querySelector('i');
-                    if (navMenu.classList.contains('active')) {
-                        icon.setAttribute('data-lucide', 'x');
-                    } else {
-                        icon.setAttribute('data-lucide', 'menu');
-                    }
-                    if (window.lucide) {
-                        window.lucide.createIcons();
-                    }
-                });
-
-                // Cerrar al clickear un link
-                navMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('active');
-                        const icon = navToggle.querySelector('i');
-                        icon.setAttribute('data-lucide', 'menu');
-                        if (window.lucide) {
-                            window.lucide.createIcons();
-                        }
-                    });
-                });
-            }
             // Counter Animation
             const counter = document.getElementById('counter');
             if (counter) {
@@ -2022,6 +1981,28 @@
                 });
             });
         });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                mainNav.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close menu when clicking on a link
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
     </script>
 </body>
 
