@@ -194,7 +194,9 @@
 
         .logo img {
             max-width: 100%;
-			height: auto;
+			height: auto !important; 
+			width: 61px; /* Tamaño para ordenador */
+			object-fit: contain;
         }
 
         nav ul {
@@ -1193,7 +1195,7 @@
                 min-width: 0 !important; /* Allow it to shrink if needed */
             }
             .logo img {
-                height: 32px !important;
+                width: 50px;
             }
             .header-right {
                 gap: 0.3rem !important;
