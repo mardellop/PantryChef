@@ -31,7 +31,6 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="https://github.com/mardellop/Pantry-Chef/blob/main/PantryChef%20Logo.png?raw=true">
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
@@ -165,7 +164,7 @@
             height: var(--header-height);
             backdrop-filter: blur(24px);
             background: rgba(255, 255, 255, 0.8);
-            z-index: 1000;
+            z-index: 2100;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -207,6 +206,50 @@
             color: var(--primary-orange);
         }
 
+        /* Menu Toggle Styles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 2001;
+            border: none;
+            background: rgba(62, 39, 35, 0.05);
+            border-radius: 12px;
+            padding: 10px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background-color: var(--primary-brown);
+            border-radius: 2px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .menu-toggle:hover span {
+            background-color: var(--primary-orange);
+        }
+
         /* Hero Section */
         .hero {
             padding-top: calc(var(--header-height) + 0px);
@@ -246,11 +289,18 @@
         }
 
         .hero h1 {
-            font-size: 72px;
-            line-height: 72px;
-            letter-spacing: -1.8px;
+            font-size: clamp(40px, 8vw, 72px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
             color: var(--primary-brown);
             margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 18px);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 540px;
         }
 
         .hero h1 .text-accent {
@@ -287,8 +337,8 @@
 
         .hero-card {
             position: relative;
-            width: 400px; /* Adaptado al hero */
-            height: 400px;
+            width: clamp(240px, 40vw, 400px);
+            height: clamp(240px, 40vw, 400px);
             cursor: pointer;
             perspective: 1200px;
             transform-style: preserve-3d;
@@ -570,26 +620,6 @@
         .highlight {
             color: var(--primary-orange);
             font-weight: 700;
-        }
-
-        @media (max-width: 900px) {
-            .about {
-                height: auto;
-            }
-            .about-sticky {
-                position: relative;
-                height: auto;
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-            .about-gallery-side {
-                height: 60vw;
-                min-height: 300px;
-                padding-top: 0;
-            }
-            .about-text-side {
-                padding: 2rem 1.5rem;
-            }
         }
 
         /* Values Section */
@@ -1060,96 +1090,251 @@
             transform: translateY(0) !important;
         }
 
-        /* Responsive */
+        /* ── RESPONSIVE ──────────────────────────────── */
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 56px;
-                line-height: 56px;
+                font-size: clamp(48px, 6vw, 64px);
+                line-height: 1.1;
             }
-
-            .download h2 {
-                font-size: 48px;
-                line-height: 48px;
-            }
-
-            .download {
-                padding: 60px 40px;
+            .container {
+                max-width: 960px;
             }
         }
 
-        @media (max-width: 992px) {
+        /* Tablets and small laptops */
+        @media (max-width: 900px) {
             .container {
                 padding: 0 2rem;
             }
-
             .hero .container,
             .download,
             .product-feature {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 4rem;
+                gap: 3rem;
             }
-
-            .hero-content,
-            .download-content {
+            .hero-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
-
             .hero-image {
                 order: -1;
+                justify-content: center;
             }
-
-            .values-grid {
-                gap: 2rem;
+            .hero-card {
+                width: clamp(280px, 50vw, 360px);
+                height: clamp(280px, 50vw, 360px);
             }
-            .value-card {
-                flex: 0 0 calc((100% - 2rem) / 2);
+            
+            /* About section stack */
+            .about {
+                height: auto;
+            }
+            .about-sticky {
+                position: relative;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                min-height: auto;
+            }
+            .about-gallery-side {
+                height: 60vw;
+                min-height: 300px;
+                padding-top: 0;
+            }
+            .about-text-side {
+                padding: 2rem 1.5rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
         }
 
-        @media (max-width: 640px) {
+        /* Mobile */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+            }
+            header {
+                padding: 0 1rem;
+            }
+            .containerWide.container {
+                padding: 0 1rem;
+            }
+            .hero {
+                padding-top: calc(var(--header-height) + 40px);
+                padding-bottom: 60px;
+            }
             .hero h1 {
-                font-size: 40px;
-                line-height: 40px;
+                font-size: clamp(32px, 8vw, 48px);
+                line-height: 1.15;
+            }
+            .hero p {
+                font-size: 16px;
+                max-width: 100%;
+                padding: 0 1rem;
             }
 
-            .hero-btns,
-            .download-btns {
-                flex-direction: column-reverse;
+            /* Header Mobile */
+            .header-right {
+                gap: 0.75rem;
             }
-
-            .btn {
+            .header-right .btn-primary {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            /* Menu Toggle */
+            .menu-toggle {
+                display: flex !important;
+                z-index: 2001;
+            }
+            nav {
+                position: fixed !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 300px !important;
+                max-width: 85% !important;
+                height: 100vh !important;
+                background: var(--bg-light) !important;
+                box-shadow: -15px 0 40px rgba(0,0,0,0.1) !important;
+                z-index: 2000 !important;
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                transform: translateX(100%) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin: 0 !important;
+                padding: 2rem !important;
+                pointer-events: auto !important;
+                will-change: transform;
+            }
+            nav.active {
+                transform: translateX(0) !important;
+            }
+            nav ul {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 2rem !important;
                 width: 100%;
             }
+            nav ul li {
+                opacity: 0;
+                transform: translateY(15px);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            nav.active ul li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            nav.active ul li:nth-child(1) { transition-delay: 0.1s; }
+            nav.active ul li:nth-child(2) { transition-delay: 0.15s; }
+            nav.active ul li:nth-child(3) { transition-delay: 0.2s; }
+            nav.active ul li:nth-child(4) { transition-delay: 0.25s; }
+            nav.active ul li:nth-child(5) { transition-delay: 0.3s; }
+            nav ul li a {
+                font-size: 24px !important;
+                font-weight: 700 !important;
+                color: var(--primary-brown) !important;
+                padding: 12px 20px !important;
+                display: block !important;
+                transition: var(--transition) !important;
+                text-decoration: none !important;
+                pointer-events: auto !important;
+            }
+            nav ul li a:hover {
+                color: var(--primary-orange) !important;
+                background: rgba(230, 81, 0, 0.05) !important;
+                border-radius: 12px;
+            }
 
+            /* Overlay */
+            body.menu-open::after {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+                z-index: 2000;
+                animation: fadeIn 0.4s ease;
+            }
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+            /* Grid Layouts */
             .values-grid {
-                gap: 1.5rem;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
             }
             .value-card {
-                flex: 1 1 100%;
+                flex: 1 1 100% !important;
+                width: 100% !important;
+                padding: 30px 20px !important;
             }
-
-            .footer-grid {
-
-            nav {
-                display: none;
+            .footer-grid, .recipe-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .product-feature {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .hero-btns, .download-btns {
+                flex-direction: column-reverse;
+                width: 100%;
+                gap: 1rem;
+            }
+            .btn {
+                width: 100%;
+                padding: 14px 24px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+                gap: 0.8rem;
+                width: 100%;
+            }
+            .newsletter-form input {
+                width: 100%;
             }
         }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: clamp(28px, 9vw, 36px);
+            }
+            .hero-card {
+                width: 260px;
+                height: 260px;
+            }
+            .section-header h2 {
+                font-size: 28px;
+            }
+            .download {
+                padding: 40px 1.5rem !important;
+            }
+            .download h2 {
+                font-size: 32px !important;
+            }
+        }
+
 
         /* --- Animaciones Premium Apple Style --- */
         .reveal-item {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            filter: blur(10px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px) scale(0.99);
+            filter: blur(8px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .reveal-item.revealed {
@@ -1162,21 +1347,21 @@
         .hero-content h1, .hero-content p, .hero-content .badge, .hero-content .hero-btns, .hero-image {
             opacity: 0;
             will-change: transform, opacity, filter;
-            animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .hero-content .badge { animation-delay: 0.1s; }
+        .hero-content .badge { animation-delay: 0.05s; }
         .hero-content h1, .hero-content p { animation: none; opacity: 1; } /* Delegado a split-text de JS para unificar efectos */
-        .hero-content .hero-btns { animation-delay: 0.5s; }
-        .hero-image { animation-delay: 0.4s; }
+        .hero-content .hero-btns { animation-delay: 0.3s; }
+        .hero-image { animation-delay: 0.2s; }
 
         @keyframes heroFadeUp {
-            from { opacity: 0; transform: translateY(40px); filter: blur(16px); }
+            from { opacity: 0; transform: translateY(30px); filter: blur(12px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         /* Hover dinámico y suave */
         .value-card, .influencer-card, .summary-item {
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important; 
         }
         .value-card:hover {
             transform: translateY(-12px) scale(1.02);
@@ -1210,12 +1395,12 @@
     <!-- Header -->
     <header>
         <div class="containerWide container">
-            <a href="index.html" class="logo">
+            <a href="#inicio" class="logo">
                 <img src="logo.png" alt="Pantry Chef Logo">
                 Pantry Chef
             </a>
-            <div class="header-right" style="display: flex; align-items: center; gap: 2rem;">
-                <nav>
+            <div class="header-right" style="display: flex; align-items: center; gap: 1rem;">
+                <nav id="mainNav">
                     <ul>
                         <li><a href="influencers.html">Cede el delantal</a></li>
                         <li><a href="https://mardellop.github.io/Pantry-Chef/" target="_blank" rel="noopener noreferrer">App Pantry Chef</a></li>
@@ -1224,7 +1409,10 @@
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </nav>
-                <a href="demo.html" class="btn btn-primary" style="margin-right:0.5rem; background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
+                <a href="demo.html" class="btn btn-primary" style="background: transparent; border: 2px solid var(--primary-orange); color: var(--primary-orange); box-shadow: none;">Probar demo</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -1259,30 +1447,30 @@
                         <div class="about-gallery-grid">
                             <!-- col 1: DOWN -->
                             <div class="about-gallery-col about-col-down">
-                                <figure><img src="arroz-blanco-perfecto.jpg" alt="Arroz blanco"><figcaption>Arroz blanco perfecto</figcaption></figure>
-                                <figure><img src="bowl-de-aguacate-y-espinacas.jpg" alt="Bowl aguacate"><figcaption>Bowl de aguacate y espinacas</figcaption></figure>
-                                <figure><img src="huevos-revueltos-con-queso.jpg" alt="Huevos revueltos"><figcaption>Huevos revueltos con queso</figcaption></figure>
-                                <figure><img src="espinacas-al-ajillo.jpg" alt="Espinacas"><figcaption>Espinacas al ajillo</figcaption></figure>
-                                <figure><img src="arroz-con-espinacas.jpg" alt="Arroz espinacas"><figcaption>Arroz con espinacas</figcaption></figure>
-                                <figure><img src="fench-toast-con-canela.jpg" alt="French toast"><figcaption>French toast con canela</figcaption></figure>
+                                <figure><img src="arroz-blanco-perfecto.png" alt="Arroz blanco"><figcaption>Arroz blanco perfecto</figcaption></figure>
+                                <figure><img src="bowl-de-aguacate-y-espinacas.png" alt="Bowl aguacate"><figcaption>Bowl de aguacate y espinacas</figcaption></figure>
+                                <figure><img src="huevos-revueltos-con-queso.png" alt="Huevos revueltos"><figcaption>Huevos revueltos con queso</figcaption></figure>
+                                <figure><img src="espinacas-al-ajillo.png" alt="Espinacas"><figcaption>Espinacas al ajillo</figcaption></figure>
+                                <figure><img src="arroz-con-espinacas.png" alt="Arroz espinacas"><figcaption>Arroz con espinacas</figcaption></figure>
+                                <figure><img src="fench-toast-con-canela.png" alt="French toast"><figcaption>French toast con canela</figcaption></figure>
                             </div>
                             <!-- col 2: UP -->
                             <div class="about-gallery-col about-col-up">
-                                <figure><img src="ensalada-caprese.jpg" alt="Ensalada caprese"><figcaption>Ensalada caprese</figcaption></figure>
-                                <figure><img src="pasta-al-pomodoro.jpg" alt="Pasta pomodoro"><figcaption>Pasta al pomodoro</figcaption></figure>
-                                <figure><img src="guacamole-casero.jpg" alt="Guacamole"><figcaption>Guacamole casero</figcaption></figure>
-                                <figure><img src="pan-con-tomate.jpg" alt="Pan con tomate"><figcaption>Pan con tomate</figcaption></figure>
-                                <figure><img src="pasta-napolitana.jpg" alt="Pasta napolitana"><figcaption>Pasta napolitana</figcaption></figure>
-                                <figure><img src="ensalada-de-aguacate-y-tomate.jpg" alt="Ensalada aguacate"><figcaption>Ensalada de aguacate y tomate</figcaption></figure>
+                                <figure><img src="ensalada-caprese.png" alt="Ensalada caprese"><figcaption>Ensalada caprese</figcaption></figure>
+                                <figure><img src="pasta-al-pomodoro.png" alt="Pasta pomodoro"><figcaption>Pasta al pomodoro</figcaption></figure>
+                                <figure><img src="guacamole-casero.png" alt="Guacamole"><figcaption>Guacamole casero</figcaption></figure>
+                                <figure><img src="pan-con-tomate.png" alt="Pan con tomate"><figcaption>Pan con tomate</figcaption></figure>
+                                <figure><img src="pasta-napolitana.png" alt="Pasta napolitana"><figcaption>Pasta napolitana</figcaption></figure>
+                                <figure><img src="ensalada-de-aguacate-y-tomate.png" alt="Ensalada aguacate"><figcaption>Ensalada de aguacate y tomate</figcaption></figure>
                             </div>
                             <!-- col 3: DOWN -->
                             <div class="about-gallery-col about-col-down">
-                                <figure><img src="pollo-al-ajillo.jpg" alt="Pollo ajillo"><figcaption>Pollo al ajillo</figcaption></figure>
-                                <figure><img src="pisto-manchego.jpg" alt="Pisto manchego"><figcaption>Pisto manchego</figcaption></figure>
-                                <figure><img src="macarrones-con-queso.jpg" alt="Macarrones"><figcaption>Macarrones con queso</figcaption></figure>
-                                <figure><img src="pan-de-ajo-casero.jpg" alt="Pan de ajo"><figcaption>Pan de ajo casero</figcaption></figure>
-                                <figure><img src="pollo-al-tomate.jpg" alt="Pollo tomate"><figcaption>Pollo al tomate</figcaption></figure>
-                                <figure><img src="arroz-con-pollo.jpg" alt="Arroz pollo"><figcaption>Arroz con pollo</figcaption></figure>
+                                <figure><img src="pollo-al-ajillo.png" alt="Pollo ajillo"><figcaption>Pollo al ajillo</figcaption></figure>
+                                <figure><img src="pisto-manchego.png" alt="Pisto manchego"><figcaption>Pisto manchego</figcaption></figure>
+                                <figure><img src="macarrones-con-queso.png" alt="Macarrones"><figcaption>Macarrones con queso</figcaption></figure>
+                                <figure><img src="pan-de-ajo-casero.png" alt="Pan de ajo"><figcaption>Pan de ajo casero</figcaption></figure>
+                                <figure><img src="pollo-al-tomate.png" alt="Pollo tomate"><figcaption>Pollo al tomate</figcaption></figure>
+                                <figure><img src="arroz-con-pollo.png" alt="Arroz pollo"><figcaption>Arroz con pollo</figcaption></figure>
                             </div>
                         </div>
                     </div>
@@ -1362,7 +1550,7 @@
                         <p>Dinos qué tienes en tu despensa para que Pantry Chef te proponga recetas nutritivas y fáciles de hacer.</p>
                     </div>
                     <div class="feature-image">
-                        <img src="feature-1.jpg" alt="Recetas personalizadas">
+                        <img src="feature-1.png" alt="Recetas personalizadas">
                     </div>
                 </div>
                 <!-- Feature 2 -->
@@ -1373,7 +1561,7 @@
                         <p>Únete a miles de cocineros caseros, comparte tus platos, descubre nuevos sabores y conecta con personas de todo el mundo. Entra a <a href="https://chat.whatsapp.com/BEdleVvEnHx4SlwCAkDckn" target="_blank" rel="noopener noreferrer">nuestra comunidad</a></p>
                     </div>
                     <div class="feature-image">
-                        <img src="feature-2.jpg" alt="Comunidad">
+                        <img src="feature-2.png" alt="Comunidad">
                     </div>
                 </div>
                 <!-- Feature 3 -->
@@ -1384,7 +1572,7 @@
                         <p>Crea listas de compra automáticamente con lo que te falta, conecta con tiendas locales y obtén descuentos exclusivos.</p>
                     </div>
                     <div class="feature-image">
-                        <img src="feature-3.jpg" alt="Listas de compra">
+                        <img src="feature-3.png" alt="Listas de compra">
                     </div>
                 </div>
                 <!-- Feature Summary -->
@@ -1490,6 +1678,27 @@
             if (window.lucide) {
                 window.lucide.createIcons();
             }
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                    document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+                });
+                // Close when clicking a nav link
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        mainNav.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
             // Counter Animation (Suscripciones dinámicas)
             const counter = document.getElementById('counter');
             if (counter) {
@@ -1583,8 +1792,8 @@
                 const inners = el.querySelectorAll('.split-inner');
                 inners.forEach((inner, idx) => {
                     // límite de delay para no esperar eterno en párrafos largos
-                    const delay = Math.min(idx * 0.02, 1.2); 
-                    inner.style.transition = `transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, opacity 0.8s ease ${delay}s`;
+                    const delay = Math.min(idx * 0.015, 0.8); 
+                    inner.style.transition = `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, opacity 0.6s ease ${delay}s`;
                 });
 
                 const textObserver = new IntersectionObserver((entries, obs) => {
